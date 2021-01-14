@@ -46,7 +46,7 @@ module.exports = async (req, res) => {
             
             // console.log('from 62', busList.length)
             const searchDate = searchInfo.date
-            let today =new Date().toLocaleString('en-au',{timeZone:'Asia/Dhaka'})
+            let today = new Date().toLocaleString('en-au',{timeZone:'Asia/Dhaka'})
             // console.log('____________________________')
             // console.log('search date')
             // console.log('what client sent', searchInfo.date)
@@ -72,15 +72,16 @@ module.exports = async (req, res) => {
                     busList = busList.filter( bus => {
                         const index = bus.busStopNames.indexOf(searchInfo.from)
 
-                        today = new Date(Date.now() + 300000)
-                        const time = ((today.getHours() * 100) + today.getMinutes())
-                        console.log('----------- checking time---------')
-                        console.log('hour', today.getHours())
-                        console.log('minute', today.getMinutes())
-                        console.log(typeof today.getHours())
-                        console.log('time', time)
-                        console.log('bus stop time', bus.busStopSchedules[index])
-                        console.log('----------- checking time---------')
+                        // today = new Date(Date.now() + 300000)
+                        today = new Date(Date.now() + 300000).toLocaleString('en-au',{timeZone:'Asia/Dhaka'});
+                        const time = ((today.getHours() * 100) + today.getMinutes());
+                        // console.log('----------- checking time---------')
+                        // console.log('hour', today.getHours())
+                        // console.log('minute', today.getMinutes())
+                        // console.log(typeof today.getHours())
+                        // console.log('time', time)
+                        // console.log('bus stop time', bus.busStopSchedules[index])
+                        // console.log('----------- checking time---------')
                         return time <= bus.busStopSchedules[index]
                     })
                 } else {
