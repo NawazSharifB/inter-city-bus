@@ -45,10 +45,22 @@ module.exports = async (req, res) => {
             // console.log('from 62', busList.length)
             const searchDate = new Date(searchInfo.date)
             let today = new Date()
+            console.log('____________________________')
+            console.log('search date')
+            console.log('date', searchDate.getDate())
+            console.log('full year', searchDate.getFullYear())
+            console.log('month', searchDate.getMonth())
+            console.log('-----------------------------')
+            console.log('____________________________')
+            console.log('today date')
+            console.log('date', today.getDate())
+            console.log('full year', today.getFullYear())
+            console.log('month', today.getMonth())
+            console.log('------------------------------')
             if (searchDate.getDate() === today.getDate() && 
                 searchDate.getFullYear() === today.getFullYear() &&
                 searchDate.getMonth() === today.getMonth()) {
-                    // console.log('hit todays bus')
+                    console.log('hit todays bus')
                     busList = busList.filter( bus => {
                         const index = bus.busStopNames.indexOf(searchInfo.from)
 
@@ -57,6 +69,8 @@ module.exports = async (req, res) => {
 
                         return time <= bus.busStopSchedules[index]
                     })
+                } else {
+                    console.log('not today bus')
                 }
     
             if ( !busList || !(busList.length >= 0)) {
