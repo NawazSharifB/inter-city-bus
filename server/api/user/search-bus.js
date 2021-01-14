@@ -72,7 +72,8 @@ module.exports = async (req, res) => {
 
                         today = new Date(Date.now() + 300000)
                         const time = today.getHours() * 100 + today.getMinutes()
-
+                        console.log('time', time)
+                        console.log('bus stop time', bus.busStopSchedules[index])
                         return time <= bus.busStopSchedules[index]
                     })
                 } else {
