@@ -74,7 +74,7 @@ module.exports = async (req, res) => {
                         const index = bus.busStopNames.indexOf(searchInfo.from)
 
                         // today = new Date(Date.now() + 300000)
-                        today = new Date(new Date(today).getTime() + 300000)
+                        today = new Date(Date.now() + 21600000 + 300000)
                         const time = ((today.getHours() * 100) + today.getMinutes());
                         console.log('----------- checking time---------')
                         console.log('hour', today.getHours())
