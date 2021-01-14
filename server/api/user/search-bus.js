@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
     let filteredBusList = [];
     let unAvailableSeatsArr = []
 
-    searchInfo.date = new Date(new Date(searchInfo.date) + 21601000)
+    searchInfo.date = new Date(searchInfo.date + 21601000)
 
     /*
     from: 'rajshahi',
