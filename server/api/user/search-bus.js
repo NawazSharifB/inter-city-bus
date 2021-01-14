@@ -6,6 +6,8 @@ module.exports = async (req, res) => {
     let filteredBusList = [];
     let unAvailableSeatsArr = []
 
+    searchInfo.date = new Date(searchInfo.date).toLocaleString('en-au',{timeZone:'Asia/Dhaka'})
+
     /*
     from: 'rajshahi',
     to: 'dhaka',
@@ -43,26 +45,26 @@ module.exports = async (req, res) => {
             })
             
             // console.log('from 62', busList.length)
-            const searchDate = new Date(searchInfo.date)
-            let today = new Date()
-            console.log('____________________________')
-            console.log('search date')
-            console.log('what client sent', searchInfo.date)
-            console.log('date', searchDate.getDate())
-            console.log('full year', searchDate.getFullYear())
-            console.log('month', searchDate.getMonth())
-            console.log('day', searchDate.getDay())
-            console.log('utc', searchDate.getUTCDate())
-            console.log('-----------------------------')
-            console.log('____________________________')
-            console.log('today date')
-            console.log('today time', today.getTime())
-            console.log('date', today.getDate())
-            console.log('full year', today.getFullYear())
-            console.log('month', today.getMonth())
-            console.log('day', today.getDay())
-            console.log('utc', today.getUTCDay())
-            console.log('------------------------------')
+            const searchDate = searchInfo.date
+            let today =new Date().toLocaleString('en-au',{timeZone:'Asia/Dhaka'})
+            // console.log('____________________________')
+            // console.log('search date')
+            // console.log('what client sent', searchInfo.date)
+            // console.log('date', searchDate.getDate())
+            // console.log('full year', searchDate.getFullYear())
+            // console.log('month', searchDate.getMonth())
+            // console.log('day', searchDate.getDay())
+            // console.log('utc', searchDate.getUTCDate())
+            // console.log('-----------------------------')
+            // console.log('____________________________')
+            // console.log('today date')
+            // console.log('today time', today.getTime())
+            // console.log('date', today.getDate())
+            // console.log('full year', today.getFullYear())
+            // console.log('month', today.getMonth())
+            // console.log('day', today.getDay())
+            // console.log('utc', today.getUTCDay())
+            // console.log('------------------------------')
             if (searchDate.getDate() === today.getDate() && 
                 searchDate.getFullYear() === today.getFullYear() &&
                 searchDate.getMonth() === today.getMonth()) {

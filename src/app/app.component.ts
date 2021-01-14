@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'src/app/services/auth.service';
 import { Subscription } from 'rxjs';
 import { NotificationService } from './services/notification.service';
@@ -18,8 +19,13 @@ export class AppComponent implements OnInit{
   constructor(
     private mediaObserver: MediaObserver,
     private notificationService: NotificationService,
-    private authService: AuthService
+    private authService: AuthService,
+    private http: HttpClient
   ) {}
+
+  test(): void {
+    const date = new Date().getTime()
+  }
 
   ngOnInit(): void {
     this.authService.initialUserAuthStatus();

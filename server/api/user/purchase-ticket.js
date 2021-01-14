@@ -15,6 +15,7 @@ module.exports = async (req, res) => {
     const purchaseInfo = req.body
     // console.log(purchaseInfo)
     const userData = req.userData
+    purchaseInfo.date = searchInfo.date = new Date(purchaseInfo.date).toLocaleString('en-au',{timeZone:'Asia/Dhaka'})
 
     const batch = fs.fs.batch()
     const busRef = fs.fs.collection('bus').doc(purchaseInfo.busName).collection('bus').doc(purchaseInfo.busUid)
@@ -33,7 +34,7 @@ module.exports = async (req, res) => {
             // console.log(busInfo)
             // console.log(userInfo)
 
-            const d = new Date(purchaseInfo.date + 21600000)
+            const d = purchaseInfo.date
             const date = d.getMonth() + '.'+ d.getDate() + '.' + d.getFullYear()
 
             const indexOfStartPoint = busInfo.busStopNames.indexOf(purchaseInfo.startPoint)

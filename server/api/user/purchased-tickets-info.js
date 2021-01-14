@@ -22,7 +22,7 @@ module.exports = async (req, res, next) => {
             const month = strDate.split('.')[0]
             const year = strDate.split('.')[2]
 
-            const today = new Date(Date.now() + 21600000)
+            const today = new Date().toLocaleString('en-au',{timeZone:'Asia/Dhaka'})
 
             if (
                 today.getDate() === date &&
