@@ -1,1 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
+    // background: rgb(121, 7, 235);
+    // background-image: radial-gradient(circle, #323750 0%, #f0f2f0 100%);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.activated-route {
+    color: rgb(187, 178, 178);
+    font-weight: 550;
+    &:hover {
+        color: rgb(185, 185, 6);
+    }
+}
+
+::ng-deep .mat-icon {
+    &:focus {
+        background: transparent;
+    }
+}
+
+.mat-focus-indicator.side-nav-menu-button.mat-icon-button.mat-button-base.ng-star-inserted {
+    &:focus {
+        background: transparent;
+    }
+}
+
+::ng-deep .mat-icon-button {
+    &:focus {
+        background: transparent;
+    }
+}

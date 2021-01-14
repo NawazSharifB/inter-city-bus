@@ -1,0 +1,56 @@
+.main-div {
+    .error-message {
+        text-align: center;
+        color: red;
+        margin-bottom: 10px;
+    }
+    width: 292px;
+    margin: auto;
+    
+}
+
+mat-card {
+    h2 {
+        text-align: center;
+        color:rgb(9, 156, 58);
+        font-weight: bolder;
+        font-size: 22px;
+    }
+
+    width: 100%;
+    max-width: 260px;
+    margin: auto;
+
+    div {
+        mat-form-field {
+            width: 100%;
+            margin-top: 20px;
+        }
+    }
+
+    p {
+        margin-top: 20px;
+    }
+
+    .register-hint {
+        margin-top: 30px;
+        text-align: center;
+        color:rgb(5, 65, 5);
+        strong {
+            text-decoration: underline;
+            color: rgb(55, 55, 248);
+            cursor: pointer;
+        }
+    }
+
+    .submit-button {
+        margin-right: 20px;
+        margin-top: 10px;
+        color: rgb(5, 65, 5);
+        background: rgb(105, 238, 105);
+
+        &:hover {
+            background: rgb(47, 240, 47);
+        }
+    }
+}

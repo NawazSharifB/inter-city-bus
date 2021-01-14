@@ -1,0 +1,30 @@
+mat-card {
+    width: 400px;
+    margin: auto;
+    margin-top: 20px;
+
+    .search-title {
+        text-align: center;
+        margin-bottom: 15px; 
+        color: rgb(122, 214, 104);
+    }
+    
+    mat-form-field {
+        max-width: 100%;
+        margin: 10px 0px;
+    }
+}
+
+.submit-button {
+    color: rgb(5, 56, 5);
+    background: rgb(91, 241, 91);
+    &:hover {
+        color: white;
+        background: rgb(8, 202, 8);
+    }
+}
+
+.error-message{
+    color: red;
+    text-align: center;
+}

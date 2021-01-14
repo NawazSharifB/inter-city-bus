@@ -1,0 +1,239 @@
+<mat-card>
+    <h2 class="main-title">Bus Information</h2>
+    <form [formGroup]="busForm" fxLayout="column">
+        <h3 class="form-field-group-title">Bus Name And Number</h3>
+        <div class="first-row row" fxLayout="row" fxLayoutAlign="space-between start">
+            <div class="form-field-area" fxFlex="1 1 45%">
+                <mat-form-field appearance="outline">
+                    <mat-label>Bus Name</mat-label>
+                    <input matInput formControlName="busName" (blur)="enhanceName('busName')" readonly>
+                    <mat-error *ngIf="busName.errors?.required">Required</mat-error>
+                    <mat-error *ngIf="busName.errors?.minlength">Too Short</mat-error>
+                    <mat-error *ngIf="busName.errors?.maxlength">Too Long</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-field-area"  fxFlex="1 1 45%">
+                <mat-form-field appearance="outline">
+                    <mat-label>Bus Number</mat-label>
+                    <input matInput formControlName="busNumber">
+                    <mat-error *ngIf="busNumber.errors?.required">Required</mat-error>
+                    <mat-error *ngIf="busNumber.errors?.minlength">Too Short</mat-error>
+                    <mat-error *ngIf="busNumber.errors?.maxlength">Too Long</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        
+        <div class="form-field-area">
+            <!-- <mat-list role="list">
+                <mat-list-item role="listitem" *ngFor="let day of offDayOptions">
+                    <mat-checkbox [checked]="day.selected"
+                        (change)="toggleOffDay(day)">
+                        {{day.name}}
+                    </mat-checkbox>
+                </mat-list-item>
+            </mat-list> -->
+            <h3 class="form-field-group-title">Bus On Days</h3>
+            <div class="bus-on-days-checkbox-area">
+                <mat-checkbox
+                    [checked]="busOnDays.everyDay.everyDay"
+                    [indeterminate]="busOnDays.everyDay.somDays"
+                    (change)="toogleEveryDay()">
+                    {{busOnDays.everyDay.name}}
+                </mat-checkbox>
+                <mat-list role="list" style="margin-left: 10px;" fxLayout="row wrap" fxLayoutAlign="space-between start">
+                    <mat-list-item role="listitem" *ngFor="let day of busOnDays.weekDays" fxFlex="1 1 45%">
+                        <mat-checkbox [checked]="day.selected"
+                            (change)="toogleWeekDays(day)">
+                            {{day.name}}
+                        </mat-checkbox>
+                    </mat-list-item>
+
+                </mat-list>
+            </div>
+
+            <div class="error-message"
+                *ngIf="busCantStayOffAllDayInAWeek">Bus Can't Be Off All Day In A Week</div>
+        </div>
+        <h3 class="form-field-group-title">Bus Type, Seat Pattern, Available Seat</h3>
+        <div class="second-row row" fxLayout="row" fxLayoutAlign="space-between start">
+            <div class="form-field-area" fxFlex="1 1 30%">
+                <mat-form-field appearance="outline">
+                    <mat-label>Bus Type</mat-label>
+                    <!-- <input matInput formControlName="busType"> -->
+                    <mat-select formControlName="busType">
+                        <mat-option>Select</mat-option>
+                        <mat-option value ="AC">AC</mat-option>
+                        <mat-option value ="Non AC">Non AC</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="busType.errors?.required">Required</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-field-area" fxFlex="1 1 30%">
+                <mat-form-field appearance="outline">
+                    <mat-label>Seat Pattern</mat-label>
+                    <!-- <input matInput formControlName="seatPattern"> -->
+                    <mat-select formControlName="seatPattern">
+                        <mat-option>Select</mat-option>
+                        <mat-option value="1x2"><img src="../../../assets/1x2 seat.jpg"></mat-option>
+                        <mat-option value="2x2"><img src="../../../assets/2x2 seat.jpg"></mat-option>
+                        <mat-option value="3x2"><img src="../../../assets/3x2 seat.jpg"></mat-option>
+                    </mat-select>
+                    <mat-hint *ngIf="seatPattern.valid">{{seatPattern.value}} Seat</mat-hint>
+                    <mat-error *ngIf="seatPattern.errors?.required">Required</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-field-area" fxFlex="1 1 30%">
+                <mat-form-field appearance="outline">
+                    <mat-label>Seat Limit</mat-label>
+                    <input 
+                        matInput
+                        type="number"
+                        formControlName="seatLimit">
+                    <mat-error *ngIf="seatLimit.errors?.required">Required</mat-error>
+                    <mat-error *ngIf="seatLimit.errors?.min">Too Low (Minimum 5)</mat-error>
+                    <mat-error *ngIf="seatLimit.errors?.max">Too High (Maximum 60)</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <h3 class="form-field-group-title">Bus Journey Start And End Station</h3>
+        <div class="third-row row" fxLayout="row" fxLayoutAlign="space-between start">
+            <div class="form-field-area" fxFlex="1 1 45%">
+                <mat-form-field appearance="outline">
+                    <mat-label>Star Point</mat-label>
+                    <input matInput formControlName="startPoint" (blur)="enhanceName('startPoint')">
+                    <mat-error *ngIf="startPoint.errors?.required">Required</mat-error>
+                    <mat-error *ngIf="startPoint.errors?.minlength">Too Short</mat-error>
+                    <mat-error *ngIf="startPoint.errors?.maxlength">Too Long</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-field-area" fxFlex="1 1 45%">
+                <mat-form-field appearance="outline">
+                    <mat-label>End Point</mat-label>
+                    <input matInput formControlName="endPoint" (blur)="enhanceName('endPoint')">
+
+                    <mat-error *ngIf="endPoint.errors?.required">Required</mat-error>
+                    <mat-error *ngIf="endPoint.errors?.minlength">Too Short</mat-error>
+                    <mat-error *ngIf="endPoint.errors?.maxlength">Too Long</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <h3 class="form-field-group-title">Bus Journey Points And Schedule (Maintain Serial)</h3>
+        <div class="fourth-row row">
+            <div class="form-field-area" fxLayout="column">
+                <ng-container formArrayName="travelPoints" 
+                    *ngFor="let busStop of travelPoints.controls; let i = index">
+                    <div [formGroupName]="i" fxLayout="row" fxLayoutAlign="space-between start">
+                        <button class="cancel-bus-stop-button"
+                            mat-icon-button
+                            [disabled]="travelPoints.length === 2"
+                            (click)="removeFormArrayItem( 'travelPoints', i)">
+                            <mat-icon>cancel</mat-icon>
+                        </button>
+                        <span style="margin-top: 15px">{{i+1}}. </span>
+                        <mat-form-field style="width: 300px" appearance="outline">
+                            <mat-label>Bus Stop Name</mat-label>
+                            <input 
+                                matInput 
+                                formControlName="busStopName" 
+                                (blur)="enhanceArrayControlName('travelPoints', i, 'busStopName')">
+
+                            <mat-error *ngIf="travelPoints.at(i).get('busStopName').errors?.required">Required</mat-error>
+                            <mat-error *ngIf="travelPoints.at(i).get('busStopName').errors?.minlength">Too Short</mat-error>
+                            <mat-error *ngIf="travelPoints.at(i).get('busStopName').errors?.maxlength">Too Long</mat-error>
+                            <mat-error *ngIf="travelPoints.at(i).get('busStopName').errors?.nameExists">Name Already Exists</mat-error>
+                        </mat-form-field>
+                        <mat-form-field style="width: 300px" appearance="outline">
+                            <mat-label>Schedule</mat-label>
+                            <input 
+                                matInput 
+                                formControlName="schedule"
+                                (click)="openTimePicker(i)"
+                                [value]="busStop.get('schedule').value | formatTime"
+                                readonly>
+
+                            <mat-error *ngIf="travelPoints.at(i).get('schedule').errors?.required">Required</mat-error>
+                        </mat-form-field>
+                    </div>
+                </ng-container>
+                <button class="add-bus-stop-button"
+                    mat-stroked-button
+                    type="button"
+                    (click)="addTravelPoint()">Add Bus Stop
+                </button>
+            </div>
+        </div>
+
+
+        <h3 class="form-field-group-title">Bus Journey Points Fare Range</h3>
+        <div class="fifth-row row">
+            <div class="form-field-area" fxLayout="column">
+                <ng-container formArrayName="fare" 
+                    *ngFor="let busStop of fare.controls; let i = index">
+                    <div [formGroupName]="i" fxLayout="row" fxLayoutAlign="space-between start">
+                        <button class="cancel-bus-stop-fare-button"
+                            mat-icon-button
+                            [disabled]="fare.controls.length === 1"
+                            (click)="removeFormArrayItem( 'fare', i)">
+                            <mat-icon>cancel</mat-icon>
+                        </button>
+                        <span style="margin-top: 15px">{{i+1}}. </span>
+                        <mat-form-field style="width: 200px" appearance="outline">
+                            <mat-label>From</mat-label>
+                            <input 
+                                matInput 
+                                formControlName="from"
+                                (blur)="enhanceArrayControlName('fare', i, 'from')">
+
+                            <mat-error *ngIf="fare.at(i).get('from').errors?.required">Required</mat-error>
+                            <mat-error *ngIf="fare.at(i).get('from').errors?.minlength">Too Short</mat-error>
+                            <mat-error *ngIf="fare.at(i).get('from').errors?.maxlength">Too Long</mat-error>
+                            <mat-error *ngIf="fare.at(i).get('from').errors?.unexist">{{fare.at(i).get('from').errors.unexist}}</mat-error>
+                        </mat-form-field>
+                        <mat-form-field style="width: 200px" appearance="outline">
+                            <mat-label>To</mat-label>
+                            <input 
+                                matInput
+                                formControlName="to"
+                                (blur)="enhanceArrayControlName('fare', i, 'to')">
+
+                            <mat-error *ngIf="fare.at(i).get('to').errors?.required">Required</mat-error>
+                            <mat-error *ngIf="fare.at(i).get('to').errors?.minlength">Too Short</mat-error>
+                            <mat-error *ngIf="fare.at(i).get('to').errors?.maxlength">Too Long</mat-error>
+                            <mat-error *ngIf="fare.at(i).get('to').errors?.unexist">{{fare.at(i).get('to').errors.unexist}}</mat-error>
+                        </mat-form-field>
+                        <mat-form-field style="width: 200px" appearance="outline">
+                            <mat-label>Fare</mat-label>
+                            <span matPrefix>&#2547; &nbsp;</span>
+                            <input 
+                                matInput
+                                type="number"
+                                formControlName="fareAt">
+
+                            <mat-error *ngIf="fare.at(i).get('fareAt').errors?.required">Required</mat-error>
+                            <mat-error *ngIf="fare.at(i).get('fareAt').errors?.min">Invalid (Minimum Fare- 0)</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="error-message" style="margin-left: 50px; text-align: start;"
+                        *ngIf="fare.at(i).hasError('alreadyExists')">
+                        {{fare.at(i).errors.alreadyExists}}
+                    </div>
+                </ng-container>
+                <button class="add-bus-stop-fare-button"
+                    mat-stroked-button
+                    type="button"
+                    (click)="addBusStopFare()">Add BusStop Fare</button>
+            </div>
+        </div>
+        <div fxFlex="row wrap">
+            <span fxFlex="1 1 auto"></span>
+            <button class="submit-button"
+                fxFlexAlign.lt-sm="start end"
+                mat-raised-button
+                (click)="submit()">{{mode}}</button>
+        </div>
+    </form>
+</mat-card>
+

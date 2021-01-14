@@ -1,0 +1,82 @@
+<div class="main-div"
+    fxLayout="row" 
+    fxLayout.lt-sm="column" 
+    fxLayoutAlign="space-around start" 
+    fxLayoutAlign.lt-sm="center">
+
+    <div fxFlex="1 1 230px" class="form-area">
+        <mat-card>
+            <h3 class="form-title">Credentials</h3>
+            <form [formGroup]="busInfoForm">
+                <div>
+                    <h3>Bus Brand Name</h3>
+                    <mat-form-field>
+                        <mat-label>Brand Name</mat-label>
+                        <input matInput formControlName="brandName" (blur)="enhanceBusName()">
+                        <mat-error *ngIf="busInfoForm.get('brandName').hasError('alreadyExists')">{{busInfoForm.get('brandName').errors.alreadyExists}}</mat-error>
+                        <mat-error *ngIf="busInfoForm.get('brandName').hasError('required')">Required</mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <h3>Bus Proprietor UID</h3>
+                    <mat-form-field>
+                        <mat-label>User UID</mat-label>
+                        <input matInput formControlName="userUid" (blur)="enhanceUid()">
+                        <mat-error *ngIf="busInfoForm.get('userUid').hasError('notFound')">{{busInfoForm.get('userUid').errors.notFound}}</mat-error>
+                        <mat-error *ngIf="busInfoForm.get('userUid').hasError('unAvailable')">{{busInfoForm.get('userUid').errors.unAvailable}}</mat-error>
+                        <mat-error *ngIf="busInfoForm.get('userUid').hasError('required')">Required</mat-error>
+                    </mat-form-field>
+                </div>
+                <button 
+                    mat-raised-button
+                    (click)="validate()">Validate
+                </button>
+            </form>
+        </mat-card>
+    </div>
+
+
+    <div class="user-info-area"
+        *ngIf="userInfo"
+        fxFlex="1 1 300px"
+        [ngStyle.lt-sm]="{
+            'margin': 'auto',
+            'margin-top.px': 100
+        }">
+        
+        <mat-card>
+            <h3>
+                <span class="title">Bus Name: </span> <span class="brand-name">{{busInfoForm.get('brandName').value}}</span>
+            </h3>
+            <h2>Admin For this Bus</h2>
+            <p>
+                <span class="title">Name: </span><span class="data">{{userInfo.firstName}} {{userInfo.lastName}}</span>
+            </p>
+            <p>
+                <span class="title">Email: </span><span class="data">{{userInfo.email}}</span>
+            </p>
+            <p>
+                <span class="title">Phone: </span><span class="data">{{userInfo.phone | formatPhone}}</span>
+            </p>
+            <p>
+                <span class="title">Role: </span><span class="data">{{userInfo.role}}</span>
+            </p>
+            <div class="error-message">
+                <p  *ngIf="!busBrandNameAvailable">Can't Create Bus. This Bus Already Exist</p>
+                <p  *ngIf="userInfo.role !== 'user'">Can't Create Bus. This User A <b>{{userInfo.role}}</b></p>
+            </div>
+            <p fxLayout="row">
+                <span fxFlex="1 1 auto"></span>
+                <button 
+                    mat-raised-button 
+                    (click)="submit()">Create Bus Brand
+                </button>
+            </p>
+        </mat-card>
+    </div>
+</div>
+
+
+<!-- <mat-card style="width: 500px; margin: auto; margin-top: 100px">
+    <h2 style="text-align: center;"> This Option Is Unavailable For Now</h2>
+</mat-card> -->

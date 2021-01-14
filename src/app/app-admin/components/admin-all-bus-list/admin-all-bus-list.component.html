@@ -1,0 +1,23 @@
+<!-- <div class="all-bus-list-area" 
+    *ngIf="busList && busList.length"
+    fxFlex="row wrap"
+    fxLayoutAlign="space-around start">
+    <div
+        fxFlex="1 1 300px" 
+        *ngFor="let bus of busList">
+        <app-full-bus-info [busInfo]="bus"></app-full-bus-info>
+    </div>
+</div> -->
+<h2 class="page-title">All Available Bus</h2>
+<div class="all-bus-list-area" 
+    *ngIf="busList && busList.length"
+    fxLayout="row wrap"
+    fxLayoutAlign="space-around start">
+    <div class="bus-area"
+        fxFlex="1 1 300px"
+        *ngFor="let bus of busList; let i = index"
+        [ngStyle]="{'background': i % 2 === 0 ? 'rgb(181, 218, 236)' : 'rgb(236, 235, 181)'}"
+    >
+        <app-full-bus-info [busInfo]="bus"></app-full-bus-info>
+    </div>
+</div>

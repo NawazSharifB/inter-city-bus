@@ -1,0 +1,42 @@
+<mat-card fxLayout="row" fxLayoutAlign="start middle" fxLayout.lt-md="column">
+    <div fxFlex="1 1 50%">
+        <div class="bus-title-area sections" fxFlex="1 1 70%">
+            <p [ngStyle.lt-md]="{'text-align': 'center'}">
+                <span class="bus-name">{{busInfo.busName}}</span>
+                <span class="bus-travel-point">({{busInfo.busStartPoint}} - {{busInfo.busEndPoint}})</span>
+            </p>
+            <p [ngStyle.lt-md]="{'text-align': 'center'}">
+                <span class="journey-point"> {{busInfo.journeyStartPoint}}</span>
+                - <span class="journey-point"> {{busInfo.journeyEndPoint}}</span>
+            </p>
+        </div>
+
+        <div class="bus-type-area sections" fxFlex="1 1 28%">
+            <p class="type-title title">Type</p>
+            <p class="bus-type data">{{busInfo.busType}}</p>
+        </div>
+    </div>
+
+
+    <div fxFlex="0 0 0%" fxFlex.lt-md="0 0 100%"
+        [ngStyle]="{'display': 'none'}"
+        [ngStyle.lt-md]="{'display': 'block','margin-top.px': 3, 'margin-bottom.px': 10}">
+        <mat-divider></mat-divider>
+    </div>
+
+
+    <div fxFlex="1 1 50%">
+        <div class="bus-schedule-area sections" fxFlex="1 1 30%">
+            <p class="schedule-title title">Schedule</p>
+            <p class="schedule data">{{busInfo.journeyStartTime | formatIntegerTime}}</p>
+        </div>
+        <div class="bus-fare-area sections" fxFlex="1 1 30%">
+            <p class="fare-title title">Bus Fare</p>
+            <p class="fare data">{{+busInfo.fare | currency:'BDT':'&#2547;  ': '.0-0'}}</p>
+        </div>
+        <div class="bus-availableSeat-area sections" fxFlex="1 1 38%">
+            <p class="seat-title title">Availabe Seat</p>
+            <p class="availableSeat data">{{busInfo.availableSeat}}</p>
+        </div>
+    </div>
+</mat-card>

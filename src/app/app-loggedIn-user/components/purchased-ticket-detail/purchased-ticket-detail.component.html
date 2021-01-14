@@ -1,0 +1,29 @@
+<div class="detail-area">
+    <p class="bus-name"><span class="data">{{busInfo.busName}} ({{busInfo.busNumber}})</span></p>
+    <p class="from-to"><span class="data">{{busInfo.startPoint}} - {{busInfo.endPoint}}</span></p>
+    <p class="date"><span class="data">{{busInfo.date | formateDatePipe}}</span></p>
+    <div class="row-area">
+        <div class="schedule-area" fxLayout="row">
+            <p class="time" fxFlex="1 1 50%"><span class="title">Schedule:</span><span class="data">{{busInfo.journeyTime | formatIntegerTime}}</span></p>
+            <p class="arrival"  fxFlex="1 1 50%"><span class="title">Arrival:</span><span class="data">{{busInfo.arrivalTime | formatIntegerTime}}</span></p>
+        </div>
+        <div class="type-fare" fxLayout="row">
+            <p class="fare" fxFlex="1 1 50%"><span class="title">Fare:</span><span class="data">{{busInfo.totalFare}} Taka</span></p>
+            <p class="bus-type" fxFlex="1 1 50%"><span class="title">Bus Type:</span><span class="data">{{busInfo.busType}}</span></p>
+        </div>
+        <div class="seat">
+            <p class="seats"><span class="title">Seats:</span><span class="data">{{selectedSeatString}}</span></p>
+        </div>
+        <div class="action-area">
+            <div fxLayout="row">
+                <span fxFlex="1 1 auto"></span>
+                <button class="purchase-button"
+                    mat-stroked-button
+                    type="button"
+                    (click)="closeDialog()">Okay
+                </button>
+            </div>
+        </div>
+    </div>
+</div><!-- end of details area-->
+

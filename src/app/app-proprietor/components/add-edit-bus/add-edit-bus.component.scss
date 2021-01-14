@@ -1,0 +1,71 @@
+mat-card {
+    width: 700px;
+    margin: auto;
+    margin-top: 30px;
+
+    .main-title {
+        text-align: center;
+        color:rgb(9, 156, 58);
+        font-weight: bolder;
+        font-size: 22px;
+    }
+
+    .form-field-group-title{
+        text-align: center;
+        font-weight: bold;
+        color:rgb(9, 67, 155);
+        margin: 40px 0px 30px 0px;
+    }
+
+    .cancel-bus-stop-button{
+        margin-top: 5px;
+        color: red;
+    }
+
+    .cancel-bus-stop-fare-button {
+        margin-top: 5px;
+        color: red;
+    }
+
+
+    .add-bus-stop-button {
+        background: rgb(77, 77, 252);
+        color: white;
+        margin: 10px 0px;
+    }
+
+
+    .add-bus-stop-fare-button {
+        background: rgb(163, 63, 245);
+        color: white;
+        margin: 10px 0px;
+    }
+}
+
+.mat-form-field {
+    width: 100%;
+}
+
+.bus-on-days-checkbox-area {
+    margin-left: 100px;
+}
+
+
+.error-message {
+    color: red;
+    font-weight: 500;
+    text-align: center;
+}
+
+.submit-button {
+    margin-right: 20px;
+    margin-top: 30px;
+    // max-width: 77px;
+    background: rgb(105, 241, 105);
+    color: rgb(6, 95, 6);
+
+    &:hover {
+        background: rgb(14, 121, 14);
+        color: white;
+    }
+}

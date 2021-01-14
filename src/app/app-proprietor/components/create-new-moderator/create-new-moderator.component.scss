@@ -1,0 +1,39 @@
+.uid-area {
+    background: white;
+    padding: 15px;
+    h3 {
+        color: rgb(85, 85, 247);
+    }
+    width: 300px;
+    margin: auto;
+    margin-top: 50px;
+
+    button {
+        margin-left: 20px;
+    }
+}
+
+mat-card {
+    width: 350px;
+    margin: auto;
+    margin-top: 50px;
+    h3 {
+        text-align: center;
+        color: rgb(248, 72, 72);
+        margin-bottom: 20px;
+    }
+
+    .title {
+        color: gray;
+    }
+    .data {
+        color: rgb(85, 85, 247);
+        font-size: large;
+        margin-left: 20px;
+    }
+
+    button {
+        background: rgb(141, 238, 141);
+        color: rgb(5, 73, 5);
+    }
+}

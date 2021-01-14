@@ -1,0 +1,46 @@
+.sidenav-container {
+  height: 100%;
+  min-height: 900px;
+  // background-image: radial-gradient(circle, #323750 0%, #f0f2f0 100%);
+  background-image: white;
+
+  .proprietor-side-nav-toolbar {
+    color: rgb(80, 80, 173);
+    background: rgb(247, 247, 217);
+  }
+  .admin-side-nav-toolbar {
+    color: rgb(233, 248, 11);
+    background: rgb(96, 96, 248);
+  }
+}
+
+.sidenav {
+  width: 200px;
+}
+
+// .sidenav .mat-toolbar {
+//   background: inherit;
+// }
+.header-nav-container {
+  position: fixed;
+  top: 0px;
+  z-index: 100;
+  width: 100%;
+  .header-nav {
+    width: 100%;
+    max-width: 1000px;
+    background: #1a73e8;
+    color: rgb(237, 236, 236);
+  }
+}
+.router-outlet-container {
+  margin-top: 100px;
+}
+
+mat-sidenav-content {
+  .side-nav-menu-button {
+    &:focus {
+      background: #f5f5f5;
+    }
+  }
+}

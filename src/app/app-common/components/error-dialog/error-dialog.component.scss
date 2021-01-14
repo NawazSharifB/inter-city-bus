@@ -1,0 +1,29 @@
+::ng-deep .mat-dialog-container {
+    max-width: 300px;
+    padding: 0px;
+    .status-code-area {
+        padding: 15px 10px 10px 10px;
+        background: rgb(240, 239, 239);
+        color: rgb(250, 102, 102);
+        h3 {
+            margin-top: 5px;
+            font-size: 26px;
+            font-weight: bold;
+        }
+    }
+    .error-message-area {
+        padding: 10px 10px 10px 10px;
+        background: white;
+        h3 {
+            font-weight: 550;
+        }
+    }
+    .action-area{
+        padding: 10px 10px 10px 10px;
+        button {
+            margin-left: 10px;
+            background: rgb(61, 61, 61);
+            color: white;
+        }
+    }
+}

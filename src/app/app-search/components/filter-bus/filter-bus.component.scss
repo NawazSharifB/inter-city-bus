@@ -1,0 +1,106 @@
+mat-card {
+    padding: 10px;
+    margin: 0px;
+    background: #f0fcc7;
+    min-width: 375px;
+}
+
+.filter-title-area {
+    // margin-bottom: 20px;
+    .filter-items-view {
+        margin-top: 10px;
+        font-weight: bold;
+        color: #230ab1;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .clear-filters-button {
+        margin-left: 10px;
+        font-weight: bold;
+        color: rgb(240, 21, 21);
+        margin-right: 10px;
+        &:hover {
+            color: white;
+            background: rgb(247, 109, 109);
+        }
+    }
+    
+    .open-filter-button {
+        color: rgb(7, 109, 7);
+        &:hover {
+            color: rgb(46, 92, 46);
+        }
+    }
+    .close-filter-button {
+        background: red;
+        color: rgb(70, 4, 4);
+        &:hover {
+            color: rgb(241, 229, 229);
+        }
+    }
+}
+
+
+
+
+.expanded-panel-wrapper {
+    // background: red;
+    // margin-top: 30px;
+    max-width: 700px;
+    margin: auto;
+
+    .filter-form-title {
+        text-align: center;
+        font-size: large;
+        font-weight: bold;
+        color: gray;
+    }
+
+    .title {
+        color: gray;
+        font-weight: bold;
+    }
+
+    .filter-button-area {
+        // background: red;
+        position: sticky;
+        top: 20px;
+        left: 20px;
+        width: 100%;
+        z-index: 5;
+
+        button {
+            background-color: #33ff33;
+            color: #006600;
+            &:hover {
+                color: white;
+            }
+        }
+    }
+    form {
+        margin-top: 20px
+    }
+
+    .row {
+        margin: 25px 0px;
+
+        .bus-name {
+            margin-top: 15px;
+        }
+    }
+    mat-radio-button:not(:first-child) {
+        margin-left: 10px
+    }
+
+    .preferred-time {
+        background: white;
+    }
+
+}
+
+@media only screen and (max-width: 959px) {
+    .row div:not(:first-child) {
+        margin-top: 20px;
+    }
+}

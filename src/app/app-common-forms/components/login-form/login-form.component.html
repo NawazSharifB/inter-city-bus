@@ -1,0 +1,48 @@
+<div class="main-div">
+    <p class="error-message"
+        *ngIf="loginError"
+        >Invalid Email/Phone or Password</p>
+
+    <!-- <app-login-form 
+        (loginInfo)="login($event)"
+        [loginFailed]="loginError"></app-login-form> -->
+        <mat-card>
+            <h2>Login</h2>
+            <form [formGroup]="loginForm">
+                <div class="email-area">
+                    <mat-form-field>
+                        <mat-label>Email</mat-label>
+                        <input 
+                            matInput 
+                            formControlName ="email"
+                            placeholder="Email Address"
+                            autocomplete="off">
+
+                        <mat-error *ngIf="email.errors?.required">Required</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="password-area">
+                    <mat-form-field>
+                        <mat-label>Password</mat-label>
+                        <input matInput formControlName="password" autocomplete="off" [type]= "hidePasswordField ? 'password' : 'text'">
+                        <button type="button" mat-icon-button matSuffix (click)="hidePasswordField = !hidePasswordField" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePasswordField">
+                            <mat-icon>{{hidePasswordField ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+
+                        <mat-error *ngIf="password.errors?.required">Required</mat-error>
+                    </mat-form-field>
+                </div>
+                <p style="color: red; text-align: center;"
+                        *ngIf="loginForm.invalid && invalidForm">Please Fillout The Form Properly
+                </p>
+                <div>
+                    <span fxFlex="1 1 auto"></span>
+        
+                    <button class="submit-button"
+                        mat-raised-button 
+                        (click)="login()">Submit</button>
+                </div>
+            </form>
+            <p class="register-hint">Don't Have Account? <strong (click)="register()">Register</strong></p>
+        </mat-card>
+</div>

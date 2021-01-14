@@ -1,0 +1,208 @@
+
+.main-div {
+    // width: 100%;
+    width: 580px;
+    height: auto;
+}
+
+.detail-area {
+    .bus-name, .from-to, .date {
+        text-align: center;
+        font-size: x-large;
+        // margin-bottom: 5;
+    }
+    .bus-name {
+        margin-bottom: 5px;
+        color: rgb(21, 48, 138);
+    }
+    .from-to {
+        margin-bottom: 5px;
+        color: rgb(16, 53, 173);
+    }
+    .date {
+        margin-bottom: 5px;
+        color: rgb(76, 117, 250);
+    }
+
+    .row-area {
+        max-width: 400px;
+        margin: auto;
+    }
+    
+    .title {
+        color: gray;
+        font-weight: 500;
+        margin-right: 10px;
+    }
+
+    .data {
+        font-size: large;
+        font-weight: 550;
+        color: rgb(76, 117, 250);
+    }
+
+    .schedule-area {
+        margin-top: 30px;
+        .data {
+            font-size: 15px;
+        }
+    }
+
+
+}
+
+.no-seat-selected {
+    font-style: italic;
+    color: gray;
+    font-size: larger;
+}
+
+
+.bus-area {
+    width: 300px;
+    overflow: hidden;
+    margin-left: 10px;
+}
+
+.indicator-area {
+    width: 100%;
+    overflow: hidden;
+    .color {
+        height: 10px;
+        margin: 5px;
+        border: 1px solid gray;
+    };
+    .color.unavailable {
+        background: rgb(252, 169, 169);
+    }
+    .color.available {
+        background: white;
+    }
+    .color.selected {
+        background:  rgb(131, 252, 131);
+    }
+
+}
+
+.bus-diagram {
+    width: 100%;
+    border: 5px solid gray;
+    border-radius: 10px;
+    overflow: hidden;
+
+    .engine-area {
+        background:  rgb(245, 245, 245);
+        height: 70px;
+        width: 100%;
+        .door {
+            background: rgb(250, 211, 211);
+            height: 40px;
+            width: 20px;
+            margin-top: 10px;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            span {
+                // text-align: center;
+                padding-top: 5px;
+            }
+        }
+        
+        .bonet {
+            height: 60px;
+            width: 100%;
+            background: rgb(178, 227, 247);
+            border-radius: 3px;
+            span {
+                margin-top: 40px;
+                text-align: center;
+            }
+
+            .driver-seat {
+                height: 40px;
+                width: 45px;
+                background: rgb(250, 211, 211);
+                border-radius: 3px;
+
+                span {
+                    margin-top: 5px;
+                    margin-left: 2px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    .seat-area {
+        .seat-row {
+            width: 100%;
+            // background: red;
+            margin: 10px 0px;
+
+            .seat-button {
+                font-size: 16px;
+                border-radius: 50%;
+                border-color: rgb(186, 186, 186);
+                max-width: 35px;
+                max-height: 35px;
+                background: transparent;
+                min-width: 10px;
+
+                &:focus {
+                    outline-width: 0px;
+                }
+            }
+
+            .selected-seat {
+                color: rgb(112, 110, 110);
+                background: rgb(131, 252, 131);
+            }
+
+            .unavailable-seat {
+                background: rgb(252, 169, 169);
+                color: rgb(160, 160, 160);
+            }
+
+            
+
+        }
+    }
+}
+
+.action-area {
+    width: 100%;
+    margin-top: 30px;
+    // align-items: center;
+    // justify-content: center;
+    .purchase-button {
+        margin-right: 20px;
+        background:rgb(115, 241, 115);
+        color: rgb(3, 77, 3);
+        font-weight: 600;
+
+        &:hover {
+            color: white;
+        }
+    }
+}
+
+
+
+
+.error-message {
+    color: red;
+    font-weight: 550;
+    font-size: 15px;
+    text-align: center;
+}
+
+.max-seat-selected-error {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    word-spacing: 7px;
+}
+
+@media only screen and (min-width: 650px) {
+    .row-area {
+        margin-left: 20px;
+    }
+}

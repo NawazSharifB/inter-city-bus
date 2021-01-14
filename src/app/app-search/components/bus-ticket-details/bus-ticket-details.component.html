@@ -1,0 +1,95 @@
+
+
+<div class="main-div" fxLayout="row">
+    <div class="detail-area" fxFlex="1 1 calc(100% - 300px)" style="min-width: 280px;">
+        <p class="bus-name"><span class="data">{{busInfo.busName}}</span></p>
+        <p class="from-to"><span class="data">{{busInfo.journeyStartPoint}} - {{busInfo.journeyEndPoint}}</span></p>
+        <p class="date"><span class="data">{{busInfo.date | formateDatePipe}}</span></p>
+        <div class="row-area">
+            <div class="schedule-area" fxLayout="row">
+                <p class="time" fxFlex="1 1 50%"><span class="title">Schedule:</span><span class="data">{{busInfo.journeyStartTime | formatIntegerTime}}</span></p>
+                <p class="arrival"  fxFlex="1 1 50%"><span class="title">Arrival:</span><span class="data">{{busInfo.arrivalTime | formatIntegerTime}}</span></p>
+            </div>
+            <div class="type-fare" fxLayout="row">
+                <p class="fare" fxFlex="1 1 50%"><span class="title">Fare:</span><span class="data">{{busInfo.fare}} Taka</span></p>
+                <p class="bus-type" fxFlex="1 1 50%"><span class="title">Bus Type:</span><span class="data">{{busInfo.busType}}</span></p>
+            </div>
+            <div class="seat">
+                <p class="seats"><span class="title">Seats:</span><span *ngIf="selectedSeat.length; else selectSeatFirstMessage" class="data">{{selectedSeatString}}</span></p>
+                <p class="seats"><span class="title">Total Fare:</span><span class="data">{{totalFare}} Taka</span></p>
+            </div>
+            <div class="action-area">
+                <p class="error-message" 
+                [ngStyle]="{'visibility': noSeatSelected ? 'visible': 'hidden'}">Please Select Seat First</p>
+                <div fxLayout="row">
+                    <span fxFlex="1 1 auto"></span>
+                    <button class="purchase-button"
+                        mat-stroked-button 
+                        (click)="purchaseTicket()">Purchase
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div><!-- end of details area-->
+
+    <div fxLayout="row" class="bus-area" fxFlex="1 1 300px" style="min-width: 300px;">
+        <div  fxFlex="270px" fxLayout="column">
+            <div class="indicator-area"
+                fxLayout="row" 
+                fxLayoutAlign="space-around start">
+    
+                <div class="color unavailable" fxFlex="10px"></div>
+                <div class="title unavailable" fxFlex="80px">Unavailable</div>
+                <div class="color available" fxFlex="10px"></div>
+                <div class="title available" fxFlex="70px">Available</div>
+                <div class="color selected" fxFlex="10px"></div>
+                <div class="title selected" fxFlex="60px">Selected</div>
+            </div>
+    
+    
+            <div class="bus-diagram">
+                <div class="engine-area" fxLayout="row">
+                    <div fxFlex="170px">
+                        <div class="door"><span>Door</span></div>
+                    </div>
+                    <div fxFlex="100px">
+                        <div class="bonet" fxLayout="row">
+                            <span fxFlex="1 1 auto">Bonet</span>
+                            <div class="driver-seat">Driver</div>
+                        </div>
+                    </div>
+            
+                </div>
+                <div class="seat-area">
+                    <ng-container *ngFor="let row of seatArr">
+                        <div class="seat-row" fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="space-around start">
+                            <ng-container *ngFor="let seat of row">
+                                <ng-container *ngIf="seat !== null; else nullSpan">
+                                    <button class="seat-button"
+                                        [disabled]="busInfo.unAvailableSeat.includes(seat)"
+                                        [ngClass]="{'selected-seat' : selectedSeat.includes(seat),
+                                                    'unavailable-seat' : busInfo.unAvailableSeat.includes(seat)}"
+                                        fxFlex="1 1 calc(100%/row.length - 5px)"
+                                        (click)="seatSelected(seat)" >{{seat}}</button>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+        <p class="error-message max-seat-selected-error"
+            *ngIf="maximumSeatPurchaseMessage"
+            fxFlex="30px"> Can't Purchase More Than 5 Seats At A Time</p>
+    </div>
+</div>
+
+
+<ng-template #selectSeatFirstMessage>
+    <span class="no-seat-selected">Select Seats To Purchase</span>
+</ng-template>
+
+
+<ng-template #nullSpan>
+    <span style='width: 38px; max-width: 38px; background: red'> </span>
+</ng-template>

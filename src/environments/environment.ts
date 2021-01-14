@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  serverUrl: 'http://localhost:3000/server-',
+  validatorServerUrl: 'http://localhost:3000/server-validator/',
+  userServerUrl: 'http://localhost:3000/server-user/',
+  proprietorServerUrl: 'http://localhost:3000/server-proprietor/',
+  adminServerUrl: 'http://localhost:3000/server-admin/',
 };
 
 /*

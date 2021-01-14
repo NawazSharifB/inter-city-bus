@@ -1,0 +1,46 @@
+mat-card {
+    width: 80%;
+    max-width: 800px;
+    min-width: 350px;
+    margin: auto;
+    margin-top: 30px;
+    background:rgb(246, 252, 253);
+
+    .registration-title{
+        text-align: center;
+        margin: 20px 0px 30px 0px;
+        font-weight: bolder;
+        color:rgb(7, 69, 202); 
+    }
+
+    mat-form-field {
+        width: 100%;
+    }
+}
+
+.error-message {
+    color: red;
+    font-weight: 550;
+}
+
+.pending-message {
+    color: rgb(216, 209, 6);
+    font-weight: 550;
+}
+
+.available-message {
+    color: green;
+    font-weight: 550;
+}
+
+.register-button {
+    margin: 20px 20px 20px 0px;
+    color: rgb(5, 87, 5);
+    font-weight: 550;
+    background: rgb(42, 241, 42);
+    
+    &:hover {
+        background: rgb(4, 133, 4);
+        color: white;
+    }
+}

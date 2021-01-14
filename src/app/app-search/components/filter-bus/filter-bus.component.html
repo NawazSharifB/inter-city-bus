@@ -1,0 +1,105 @@
+<mat-card>
+    <div fxLayout="row" class="filter-title-area">
+        <p  class="filter-items-view"
+            [ngStyle.lt-md]="{'font-size': 'small'}"
+            fxFlex="1 1 auto"
+            fxFlex.lt-md="1 1 60%"
+            fxFlex.xs="1 1 auto"
+            fxHide.xs
+            #filterItems></p>
+            <p fxHide.gt-sm fxFlex="1 1 auto"></p>
+        <div class=""></div>
+        <button class="clear-filters-button"
+            mat-button
+            *ngIf="doFilter"
+            fxFlexAlign.lt-md="right"
+            (click)="clearFilter()">Clear Filters</button>
+        <button class="open-filter-button"
+            [ngStyle]="{'background': doFilter ? '#b3ffb3': 'transparent'}"
+            mat-button
+            *ngIf="!panelOpenState"
+            fxFlexAlign.lt-md="right" 
+            (click)="openFilter()">Filter
+            <mat-icon>filter_list</mat-icon></button>
+        <button class="close-filter-button"
+            mat-button 
+            *ngIf="panelOpenState" 
+            (click)="closeFilter()"><mat-icon>close</mat-icon></button>
+    </div>
+    
+        
+    
+
+    <mat-expansion-panel class="mat-elevation-z0"
+        #expansionPanel 
+        hideToggle>
+        <div fxLayout="column" class="expanded-panel-wrapper">
+            
+        
+            <div class="filter-button-area" fxLayout="row">
+                <p fxFlex="1 1 auto" class="filter-form-title">Choose Your Filter Choices</p>
+                <!-- <span fxFlex="1 1 auto"></span> -->
+                <button 
+                    type="button" 
+                    mat-button 
+                    (click)="filterBus()"
+                    [disabled]="filterForm.pristine">Filter</button>
+            </div>
+        
+            <form [formGroup]="filterForm">
+                <div class="first-row row" fxLayout="row wrap">
+                    <div class="available-seat" fxFlex="1 1 50%" fxFlex.lt-md="1 1 100%">
+                        <p class="title available-seat">Available Seat</p>
+                        <mat-radio-group formControlName="availableSeat" aria-label="Select an option">
+                            <mat-radio-button value="All">All</mat-radio-button>
+                            <mat-radio-button value="H2L">Hight-Low</mat-radio-button>
+                            <mat-radio-button value="L2H">Low-High</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <div class="bus-type" fxFlex="1 1 50%" fxFlex.lt-md="1 1 100%">
+                        <p class="title">Bus Type</p>
+                        <mat-radio-group formControlName="busType" aria-label="Select an option">
+                            <mat-radio-button value="All">All</mat-radio-button>
+                            <mat-radio-button value="AC">AC</mat-radio-button>
+                            <mat-radio-button value="Non AC">Non AC</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                </div><!--end first row-->
+        
+                <div class="second-row row" fxLayout="row wrap">
+                    <div class="bus-name" fxFlex="1 1 50%" fxFlex.lt-md="1 1 100%">
+                        <p class="title">Preferred Bus Name</p>
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <!-- <input matInput formControlName="busName" placeholder="Enter Bus Name"> -->
+                            <mat-select formControlName="busName">
+                                <mat-option value="">All Buses</mat-option>
+                                <mat-option *ngFor="let name of availableBusesName" 
+                                    [value]="name"> {{name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="price" fxFlex="1 1 50%" fxFlex.lt-md="1 1 100%">
+                        <p class="title">Price</p>
+                        <mat-radio-group formControlName="price" aria-label="Select an option">
+                            <mat-radio-button value="All">All</mat-radio-button>
+                            <mat-radio-button value="H2L">Hight-Low</mat-radio-button>
+                            <mat-radio-button value="L2H">Low-High</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                </div><!--end second row-->
+                <div class="third-row row">
+                    <p class="title">Preferred Journey Time</p>
+                    <mat-form-field appearance="outline" class="preferred-time">
+                        <mat-select formControlName="journeyTime">
+                            <mat-option *ngFor="let time of journeyTime" [value]="time.value">
+                            {{time.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div><!--end third row-->
+            </form>
+                
+            </div>
+    </mat-expansion-panel>
+</mat-card>

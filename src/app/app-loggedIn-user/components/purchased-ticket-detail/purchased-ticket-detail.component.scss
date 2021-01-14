@@ -1,0 +1,60 @@
+::ng-deep .mat-dialog-container {
+    padding: 15px 5px;
+    width: 300px;
+    margin: auto;
+}
+.detail-area {
+    max-width: 300px;
+    .bus-name, .from-to, .date {
+        text-align: center;
+        font-size: x-large;
+        // margin-bottom: 5;
+    }
+    .bus-name {
+        margin-bottom: 5px;
+        color: rgb(21, 48, 138);
+    }
+    .from-to {
+        margin-bottom: 5px;
+        color: rgb(16, 53, 173);
+    }
+    .date {
+        margin-bottom: 5px;
+        color: rgb(76, 117, 250);
+    }
+
+    .row-area {
+        max-width: 400px;
+        margin: auto;
+    }
+    
+    .title {
+        color: gray;
+        font-weight: 500;
+        margin-right: 10px;
+    }
+
+    .data {
+        font-size: large;
+        font-weight: 550;
+        color: rgb(76, 117, 250);
+    }
+
+    .schedule-area {
+        margin-top: 30px;
+        .data {
+            font-size: 15px;
+        }
+    }
+
+    .action-area {
+        margin-top: 20px;
+        .purchase-button {
+            margin-right: 20px;
+            background:rgb(76, 117, 250);
+            color: white;
+        }
+    }
+
+
+}

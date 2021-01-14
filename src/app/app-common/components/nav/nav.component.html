@@ -1,0 +1,116 @@
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="'navigation'"
+      [mode]="'over'"
+      [opened]="false">
+    <mat-toolbar class="proprietor-side-nav-toolbar" color="primary"
+      *ngIf="loggedIn && proprietor">Proprietor Panel</mat-toolbar>
+    <mat-toolbar class="admin-side-nav-toolbar" color="primary"
+      *ngIf="loggedIn && admin">Admin Panel</mat-toolbar>
+
+    <mat-nav-list *ngIf="loggedIn && admin" (click)="drawer.close()">
+      <a mat-list-item routerLink="/admin/panel" 
+        routerLinkActive="activated-route"
+        routerLinkActiveOptions="{exact: true}" >Admin Panel</a>
+      
+      <a mat-list-item routerLink="/admin/all-bus-list"
+        routerLinkActive="activated-route"
+        routerLinkActiveOptions="{exact: true}" >All Buses</a>
+      
+      <a mat-list-item routerLink="/admin/new-bus-brand" 
+        routerLinkActive="activated-route"
+        routerLinkActiveOptions="{exact: true}" >Add New Bus Brand</a>
+      
+      <a mat-list-item routerLink="/admin/new-admin"
+        routerLinkActive="activated-route"
+        routerLinkActiveOptions="{exact: true}" >Add New Admin</a>
+
+      <a mat-list-item routerLink="/admin/admin-list"
+        routerLinkActive="activated-route"
+        routerLinkActiveOptions="{exact: true}" >Admin List</a>
+    </mat-nav-list>
+    <mat-nav-list *ngIf="loggedIn && proprietor" (click)="drawer.close()">
+
+      <a mat-list-item 
+        [routerLink]="['/proprietor', busName, 'panel']" 
+        routerLinkActive="activated-route" 
+        routerLinkActiveOptions="{exact: true}" >Proprietor Panel</a>
+
+      <a mat-list-item [routerLink]="['/proprietor', busName, 'add-bus']"
+          routerLinkActive="activated-route" 
+          routerLinkActiveOptions="{exact: true}" >Add New Bus</a>
+
+      <a mat-list-item 
+        [routerLink]="['/proprietor', busName, 'all-bus-list']"
+        routerLinkActive="activated-route" 
+        routerLinkActiveOptions="{exact: true}" >All Buses</a>
+
+      <a mat-list-item 
+        [routerLink]="['/proprietor', busName, 'new-moderator']"
+        routerLinkActive="activated-route" 
+        routerLinkActiveOptions="{exact: true}" >Create New Moderator</a>
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="header-nav-container">
+      <mat-toolbar class="header-nav" fxLayout="row">
+          <span>
+              <button class="side-nav-menu-button"
+                *ngIf="loggedIn && (admin || proprietor)"
+                type="button"
+                aria-label="Toggle sidenav"
+                mat-icon-button
+                (click)="drawer.toggle()">
+                <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+              </button>
+
+              <button mat-button routerLink="/search" 
+                routerLinkActive="activated-route"
+                routerLinkActiveOptions="{exact: true}" >Filter</button>
+
+              <button 
+                mat-button 
+                *ngIf="loggedIn"
+                routerLink="/user/purchase-history" 
+                routerLinkActive="activated-route"
+                routerLinkActiveOptions="{exact: true}" >Purchase History
+              </button>
+          </span>
+          <span fxFlex="1 1 auto"></span>
+          <span>
+            <button 
+              mat-button 
+              *ngIf="!loggedIn"
+              routerLink="/auth/register"
+              routerLinkActive="activated-route"
+              routerLinkActiveOptions="{exact: true}" >Register
+            </button>
+
+            <button 
+              mat-button 
+              *ngIf="!loggedIn"
+              routerLink="/auth/login"
+              routerLinkActive="activated-route"
+              routerLinkActiveOptions="{exact: true}"
+              >Login 
+            </button>
+
+            <button 
+              mat-button 
+              *ngIf="loggedIn"
+              (click)="logout()">Logout
+            </button>
+          </span>
+
+          
+
+          
+      </mat-toolbar>
+    </div>
+    <div class="router-outlet-container">
+      <ng-content select=".routerOutlet"></ng-content>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

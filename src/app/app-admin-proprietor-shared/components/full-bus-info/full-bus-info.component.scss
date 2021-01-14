@@ -1,0 +1,30 @@
+.main-div {
+    max-width: 290px;
+    margin: auto;
+    margin-left: 2px;
+    margin-top: 10px; 
+    // background: red;
+    .header-info-area {
+        background: rgb(236, 236, 236);
+        // color: white;
+    }
+    .table-header {
+        color: rgb(95, 95, 250);
+        font-weight: 550;
+    }
+    h3 {
+        text-align: center;
+    }
+    .title {
+        color: gray;
+    }
+    .data {
+        color: rgb(4, 109, 4);
+    }
+    .table-header {
+        margin: 20px 0px 10px 0px;
+    }
+    table {
+        min-width: 290px;
+    }
+}

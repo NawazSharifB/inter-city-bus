@@ -1,0 +1,88 @@
+<mat-card>
+    <h2 class="search-title">Search For Available Bus</h2>
+    <form [formGroup]="filterForm" fxLayout="row wrap" fxLayoutAlign="space-between start">
+        <div fxFlex="1 1 45%">
+            <mat-form-field>
+                <mat-label>Start Point</mat-label>
+                <input 
+                    matInput 
+                    formControlName="from"
+                    (blur)="enhanceName('from')"
+                    [matAutocomplete]="from">
+                <mat-autocomplete #from="matAutocomplete">
+                  <mat-option *ngFor="let fromOption of filterFrom$ | async" [value]="fromOption">
+                    {{fromOption}}
+                  </mat-option>
+                </mat-autocomplete>
+                <mat-error *ngIf="filterForm.get('from').hasError('required')">Required</mat-error>
+                <mat-error *ngIf="filterForm.get('from').hasError('minlength')">Too Short</mat-error>
+                <mat-error *ngIf="filterForm.get('from').hasError('maxlength')">Too Long</mat-error>
+            </mat-form-field>
+        </div>
+        <div fxFlex="1 1 45%">
+            <mat-form-field>
+                <mat-label>Destination</mat-label>
+                <input 
+                    matInput 
+                    formControlName="to"
+                    (blur)="enhanceName('to')"
+                    [matAutocomplete]="to">
+                <mat-autocomplete #to="matAutocomplete">
+                  <mat-option *ngFor="let toOption of filterTo$ | async" [value]="toOption">
+                    {{toOption}}
+                  </mat-option>
+                </mat-autocomplete>
+                <mat-error *ngIf="filterForm.get('to').hasError('required')">Required</mat-error>
+                <mat-error *ngIf="filterForm.get('to').hasError('minlength')">Too Short</mat-error>
+                <mat-error *ngIf="filterForm.get('to').hasError('maxlength')">Too Long</mat-error>
+            </mat-form-field>
+        </div>
+        <div fxFlex="1 1 40%">
+            <mat-form-field>
+                <mat-label>Journey Date</mat-label>
+                <input 
+                    matInput 
+                    [matDatepicker]="datePicker" 
+                    formControlName="date"
+                    [matDatepickerFilter]="dateFilter"
+                    (focus)="datePicker.open()" 
+                    autocomplete="off"
+                    readonly>
+                <mat-datepicker #datePicker disabled="false" class="datePicker-icon"></mat-datepicker>
+                <mat-error *ngIf="filterForm.get('date').hasError('required')">Required</mat-error>
+            </mat-form-field>
+        </div>
+        <div fxFlex="1 1 30%">
+            <mat-form-field>
+                <mat-label>Preferred Time</mat-label>
+                <input 
+                    matInput 
+                    formControlName="time"
+                    autocomplete="off"
+                    (focus)="openTimePicker()"
+                    [value]="time.value | formatTime"
+                    readonly>
+            </mat-form-field>
+        </div>
+        <div fxFlex="1 1 20%">
+            <mat-form-field>
+                <mat-label>Bus Type</mat-label>
+                <mat-select formControlName="busType">
+                    <mat-option value="All">All</mat-option>
+                    <mat-option value="AC">AC</mat-option>
+                    <mat-option value="Non AC">Non AC</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <p *ngIf="filterForm.hasError('passedTime')" class="error-message">Time Has Already Passed</p>
+        <p *ngIf="filterForm.hasError('sameName')" class="error-message">Journey Start And Destination Point Can't Be Same</p>
+        <p *ngIf="filterForm.get('from').hasError('busUnavailable')" class="error-message">No Bus Available at <strong>{{filterForm.get('from').errors.busUnavailable}}</strong>. Please Select Travel Stations From Suggestion List</p>
+        <p *ngIf="filterForm.get('to').hasError('busUnavailable')" class="error-message">No Bus Available at <strong>{{filterForm.get('to').errors.busUnavailable}}</strong>. Please Select Travel Stations From Suggestion List</p>
+        <div>
+            <button class="submit-button"
+                type="button"
+                mat-raised-button
+                (click)="filter()">Search</button>
+        </div>
+    </form>
+</mat-card>

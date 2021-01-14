@@ -1,0 +1,62 @@
+<div class="main-div mat-elevation-z2">
+    <div class="header-info-area">
+        <h3><span class="title">Bus Name: </span><span class="data">{{busInfo.busName}}</span></h3>
+        <h3><span class="title">Bus Number: </span> <span class="data">{{busInfo.busNumber}}</span></h3>
+        <h3><span class="title">Route: </span><span class="data">{{busInfo.startPoint}} - {{busInfo.endPoint}}</span></h3>
+        <div fxLayout="row" style="margin-bottom: 10px">
+            <div fxFlex="1 1 25%" style="margin-left: 5px">
+                <span class="title">Seats: </span><span class="data">{{busInfo.seatLimit}}</span>
+            </div>
+            <div fxFlex="1 1 33%">
+                <span class="title">Type: </span><span class="data">{{busInfo.busType}}</span>
+            </div>
+            <div fxFlex="1 1 41%">
+                <span class="title">Seat Pattern: </span><span class="data">{{busInfo.seatPattern}}</span>
+            </div>
+        </div>
+        <p style="margin-left: 5px">
+            <span class="title">Off Days: </span>
+            <span class="data">{{offDays}}</span>
+        </p>
+        <h3 class="table-header">Bus Stop Name And Schedule</h3>
+    </div>
+    <div>
+        <table mat-table [dataSource]="busStopArray" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef> Bus Stop </th>
+              <td mat-cell *matCellDef="let busStop"> {{busStop.name}} </td>
+            </ng-container>
+            <ng-container matColumnDef="schedule">
+              <th mat-header-cell *matHeaderCellDef> Schedule </th>
+              <td mat-cell *matCellDef="let busStop"> {{busStop.schedule}} </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayBusStopColumn"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayBusStopColumn;"></tr>
+          </table>
+    </div>
+    <div>
+      <div class="header-info-area">
+        <h3 class="table-header">Bus Stop Name And Fare</h3>
+      </div>
+        <table mat-table [dataSource]="busFareArray" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="from">
+              <th mat-header-cell *matHeaderCellDef> From </th>
+              <td mat-cell *matCellDef="let busStop"> {{busStop.from}} </td>
+            </ng-container>
+            <ng-container matColumnDef="to">
+              <th mat-header-cell *matHeaderCellDef> To </th>
+              <td mat-cell *matCellDef="let busStop"> {{busStop.to}} </td>
+            </ng-container>
+            <ng-container matColumnDef="fare">
+              <th mat-header-cell *matHeaderCellDef>Fare </th>
+              <td mat-cell *matCellDef="let busStop"> {{busStop.fare | currency:'BDT':'&#2547;  ': '.0-0'}} </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayBusFareColumn"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayBusFareColumn;"></tr>
+          </table>
+    </div>
+</div>

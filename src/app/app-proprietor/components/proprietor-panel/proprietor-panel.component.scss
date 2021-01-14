@@ -1,0 +1,25 @@
+div {
+    justify-content: center;
+    width: 300px;
+    margin:auto;
+    margin-top: 50px;
+    height: 100%;
+    padding-bottom: 30px;
+}
+
+.action-button {
+    width: 300px;
+    height: 80px;
+    font-size: larger;
+    font-weight: 550;
+    margin: auto;
+    transition: all 0.5s ease;
+    color: rgb(39, 38, 38);
+    border-color: rgb(126, 126, 126);
+
+    &:hover {
+        transform: scale(1.2);
+        color: rgb(29, 187, 29);
+        background: white;
+    }
+}

@@ -1,0 +1,31 @@
+<h2 class="page-title">All {{busTitleName}} Buses</h2>
+<div class="bus-area"
+    *ngIf="busList && busList.length"
+    fxLayout="row wrap"
+    fxLayoutAlign="space-around start"
+    >
+
+    
+    <div class="bus-info"
+        *ngFor="let bus of busList; let i = index"
+        [ngStyle]="{'background': i % 2 === 0 ? 'rgb(181, 218, 236)' : 'rgb(236, 235, 181)'}"
+        >
+        <div class="header-info-area"
+            fxLayout="row">
+            <span fxFlex="1 1 auto"></span>
+            <div>
+                <button class="edit-button"
+                    type="button" 
+                    mat-stroked-button
+                    (click)="editBus(bus.uid)">Edit
+                </button>
+                <button class="delete-button"
+                    type="button" 
+                    mat-stroked-button
+                    (click)="deleteBus(bus.uid)">Delete
+                </button>
+            </div>
+        </div>
+        <app-full-bus-info [busInfo]="bus"></app-full-bus-info>
+    </div>
+</div>

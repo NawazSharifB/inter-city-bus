@@ -1,0 +1,96 @@
+<mat-card>
+    <h2 class="registration-title">Registration Form</h2>
+    <form [formGroup]="registerForm" fxLayout="column">
+        <div fxLayout="row wrap" fxLayoutAlign="space-around start" [ngStyle.gt-xs]="{'margin-bottom.px': 20}">
+            <div fxFlex="1 1 45%" fxFlex.lt-sm="1 1 100%" [ngStyle.lt-sm]="{'margin-bottom.px': 20}">
+                <mat-form-field appearance="outline">
+                    <mat-label>First Name</mat-label>
+                    <input matInput formControlName="firstName" (blur)="enhanceInput('firstName')">
+
+                    <mat-error *ngIf="firstName.errors?.required">Required</mat-error>
+                    <mat-error *ngIf="firstName.errors?.minlength">Too Short</mat-error>
+                    <mat-error *ngIf="firstName.errors?.maxlength">Too Long</mat-error>
+                </mat-form-field>
+            </div>
+
+            <div fxFlex="1 1 45%" fxFlex.lt-sm="1 1 100%" [ngStyle.lt-sm]="{'margin-bottom.px': 20}">
+                <mat-form-field class="form-field" appearance="outline">
+                    <mat-label>Last Name</mat-label>
+                    <input matInput formControlName="lastName" (blur)="enhanceInput('lastName')">
+
+                    <mat-error *ngIf="lastName.errors?.required">Required</mat-error>
+                    <mat-error *ngIf="lastName.errors?.minlength">Too Short</mat-error>
+                    <mat-error *ngIf="lastName.errors?.maxlength">Too Long</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutAlign="space-around start" [ngStyle.gt-xs]="{'margin-bottom.px': 20}">
+            <div fxFlex="1 1 45%" fxFlex.lt-sm="1 1 100%" [ngStyle.lt-sm]="{'margin-bottom.px': 20}">
+                <mat-form-field appearance="outline">
+                    <mat-label>Phone Number</mat-label>
+                    <span matPrefix style="position: initial">+880 &nbsp;</span>
+                    <input matInput formControlName="phone" type="number">
+
+                    <mat-hint *ngIf="phone.pending" class="pending-message">Checking Validity...</mat-hint>
+                    <mat-hint *ngIf="phone.valid" class="available-message">Available Phone</mat-hint>
+                    <mat-error *ngIf="phone.errors?.required">Required</mat-error>
+                    <mat-error *ngIf="phone.errors?.minlength">Too Short</mat-error>
+                    <mat-error *ngIf="phone.errors?.maxlength">Too Long</mat-error>
+                    <mat-error *ngIf="phone.errors?.unAvailable">Unavailable</mat-error>
+                </mat-form-field>
+            </div>
+            <div fxFlex="1 1 45%" fxFlex.lt-sm="1 1 100%" [ngStyle.lt-sm]="{'margin-bottom.px': 20}">
+                <mat-form-field appearance="outline">
+                    <mat-label>Email Address</mat-label>
+                    <input matInput formControlName="email">
+
+                    <mat-hint  *ngIf="email.pending" class="pending-message">Checking Validity...</mat-hint>
+                    <mat-hint *ngIf="email.valid" class="available-message">Available Email</mat-hint>
+                    <mat-error *ngIf="email.errors?.required">Required</mat-error>
+                    <mat-error *ngIf="email.errors?.email">Not Valid Email</mat-error>
+                    <mat-error *ngIf="email.errors?.unAvailable">Unavailable</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+
+        <div fxLayout="row wrap" fxLayoutAlign="space-around start" [ngStyle.gt-xs]="{'margin-bottom.px': 20}">
+            <div fxFlex="1 1 45%" fxFlex.lt-sm="1 1 100%" [ngStyle.lt-sm]="{'margin-bottom.px': 20}">
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput formControlName="password" [type]="hidePasswordField ? 'password' : 'text'">
+                    <button type="button" mat-icon-button matSuffix (click)="hidePasswordField = !hidePasswordField" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePasswordField">
+                        <mat-icon>{{hidePasswordField ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+
+                    <!-- <mat-error *ngIf="registerForm.errors?.unMatchPassword">{{registerForm.errors.unMatchPassword}}</mat-error> -->
+                    <mat-error *ngIf="password.errors?.required">Required</mat-error>
+                    <mat-error *ngIf="password.errors?.minlength">Too Short</mat-error>
+                    <mat-error *ngIf="password.errors?.maxlength">Too Long</mat-error>
+                </mat-form-field>
+            </div>
+            <div fxFlex="1 1 45%" fxFlex.lt-sm="1 1 100%" [ngStyle.lt-sm]="{'margin-bottom.px': 20}">
+                <mat-form-field appearance="outline">
+                    <mat-label>Re-Password</mat-label>
+                    <input matInput formControlName="rePassword" [type]="hidePasswordField ? 'password' : 'text'" [pattern]="password.value">
+                    <button type="button" mat-icon-button matSuffix (click)="hidePasswordField = !hidePasswordField" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePasswordField">
+                        <mat-icon>{{hidePasswordField ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+
+                    <!-- <mat-error *ngIf="registerForm.errors?.unMatchPassword">{{registerForm.errors.unMatchPassword}}</mat-error> -->
+                    <mat-error *ngIf="rePassword.errors?.pattern">Password Doesn't Match</mat-error>
+                    <mat-error *ngIf="rePassword.errors?.required">Required</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div fxLayout="row">
+            <div fxFlex="1 1 auto"></div>
+            <button class="register-button"
+                mat-stroked-button
+                (click)="register()">Register
+            </button>
+        </div>
+    </form>
+</mat-card>

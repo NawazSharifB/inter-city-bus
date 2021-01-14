@@ -1,0 +1,104 @@
+
+<mat-card class="user-info" *ngIf="userInfo">
+  <p ><span class="title">User Name:</span><span class="data">{{userInfo.name}}</span></p>
+  <p ><span class="title">Phone:</span><span class="data">{{userInfo.phone | formatPhone}}</span></p>
+  <p ><span class="title">Email:</span><span class="data">{{userInfo.email}}</span></p>
+  <p ><span class="title">UID:</span><span class="data">{{userInfo.uid}}</span></p>
+</mat-card>
+
+<!-- upcoming ticket list -->
+<div class="upcoming-tickets-area" *ngIf="upcoming && upcoming.length; else noUpcomingTicket">
+  <h2 class="ticket-list-title">Upcoming Journey Tickets List</h2>
+  <table mat-table [dataSource]="upcoming" class="mat-elevation-z8" class="purchase-history-table upcoming-tickets-table">
+  
+      <!-- <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      </ng-container> -->
+  
+      <ng-container matColumnDef="busName">
+        <th mat-header-cell *matHeaderCellDef> Bus Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.busName}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="from">
+        <th mat-header-cell *matHeaderCellDef> From </th>
+        <td mat-cell *matCellDef="let element"> {{element.startPoint}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="to">
+        <th mat-header-cell *matHeaderCellDef> Destination </th>
+        <td mat-cell *matCellDef="let element"> {{element.endPoint}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.date | formateDatePipe}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="journeyTime">
+        <th mat-header-cell *matHeaderCellDef> Schedule </th>
+        <td mat-cell *matCellDef="let element"> {{element.journeyTime | formatIntegerTime}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" class="header-row"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="ticketDetails(row)"></tr>
+    </table>
+</div>
+
+
+
+    <!-- backdated ticket list -->
+  <div class="backdated-tickets-area" *ngIf="backDated && backDated.length">
+    <h2 class="ticket-list-title">Purchased Tickets History</h2>
+    <button class="delete-bus-history"
+      mat-stroked-button
+      (click)="deleteHistory()">Delete History</button>
+
+      <table mat-table [dataSource]="backDated" class="mat-elevation-z8" class="purchase-history-table backdated-tickets-table">
+      
+          <!-- <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+          </ng-container> -->
+      
+          <ng-container matColumnDef="busName">
+            <th mat-header-cell *matHeaderCellDef> Bus Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.busName}} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="from">
+            <th mat-header-cell *matHeaderCellDef> From </th>
+            <td mat-cell *matCellDef="let element"> {{element.startPoint}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="to">
+            <th mat-header-cell *matHeaderCellDef> Destination </th>
+            <td mat-cell *matCellDef="let element"> {{element.endPoint}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef> Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.date | formateDatePipe}} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="journeyTime">
+            <th mat-header-cell *matHeaderCellDef> Schedule </th>
+            <td mat-cell *matCellDef="let element"> {{element.journeyTime | formatIntegerTime}} </td>
+          </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+  </div>
+
+  <ng-template #noUpcomingTicket>
+    <mat-card class="no-upcoming-ticket-message">
+      <p>No Upcoming Tickets Available</p>
+    </mat-card>
+  </ng-template>
+
+
+
+  
+  

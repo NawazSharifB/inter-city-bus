@@ -1,0 +1,26 @@
+<div class="bus-list-container" *ngIf="unFilteredBusList">
+    <h2 class="bus-list-title-area">Available Bus List  
+        <span style="margin-left: 10px"></span>(<span style="color:gray; margin-right: 5px; font-size: 17px;"> Date - </span> {{journeyDate | formateDatePipe}})
+    </h2>
+    <div *ngIf="unFilteredBusList.length; else noBusAvailable" class="bus-list-area">
+        <app-filter-bus [busList]="unFilteredBusList" (fiteredBusList) ="fiteredBusList($event)"></app-filter-bus>
+        <div *ngFor="let bus of busList; let i = index" class="bus-area">
+            <app-available-bus [busInfo]="bus" (click)="selectedBus(bus, i)"></app-available-bus>
+    
+            <mat-expansion-panel #ee class="bus-detail-area">
+                <div fxLayout="row" class="cancel-button-area">
+                    <span fxFlex="1 1 auto"></span>
+                    <button mat-icon-button (click)="close()">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>
+                    <app-bus-ticket-details [busInfo]="bus" ></app-bus-ticket-details>
+            </mat-expansion-panel>
+        </div>
+    </div>
+
+    <ng-template #noBusAvailable>
+        <p class="no-bus-available-message">No Bus Available On This Route. Please Choose Different Date or Bus Route</p>
+    </ng-template>
+</div>
+

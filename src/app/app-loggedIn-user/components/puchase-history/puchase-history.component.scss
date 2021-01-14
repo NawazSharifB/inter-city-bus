@@ -1,0 +1,103 @@
+.user-info {
+    width: 60%;
+    max-width: 430px;
+    min-width: 320px;
+    background:rgb(253, 248, 236);
+    margin: auto;
+    margin-top: 50px;
+    p {
+        text-align: center;
+
+    }
+    .title {
+        color: gray;
+        font-weight: 500;
+        margin-right: 10px;
+    }
+
+    .data {
+        font-size: large;
+        font-weight: 550;
+        color: rgb(76, 117, 250);
+    }
+}
+
+
+.upcoming-tickets-area, .backdated-tickets-area {
+    width: 90%;
+    min-width:600px;
+    margin: auto;
+    background: white;
+    padding: 10px 0px 30px 0px;
+    border-radius: 10px;
+
+    .ticket-list-title {
+        text-align: center;
+        font-weight: bold;
+        margin: 20px 0px;
+        color: rgb(74, 74, 247);
+    }
+}
+
+.purchase-history-table {
+    width: 100%;
+    border: 1px solid rgb(224, 224, 224);
+        th {
+            text-align: center;
+            font-weight:550;
+        }
+        tr {
+            text-align: center;
+        }
+}
+.upcoming-tickets-area {
+    margin-top: 30px;
+    tr {
+        transition: all 0.1s linear;
+
+        &:hover {
+            cursor: pointer;
+            transform: scale(1.02);
+            background: #e0f8e5; 
+        }
+    }
+    .header-row {
+        &:hover {
+            cursor:auto;
+            transition: none;
+            transform: none;
+            background: none; 
+        }
+    }
+}
+
+
+.backdated-tickets-area {
+    margin-top: 100px;
+    .delete-bus-history {
+        margin: 10px;
+        background: rgb(247, 63, 63);
+        color: white;
+        &:hover {
+          background: red;  
+        }
+    }
+    .backdated-tickets-table {
+        background: rgb(250, 247, 247);
+    }
+}
+
+
+.no-upcoming-ticket-message {
+    width: 80%;
+    min-width: 300px;
+    margin: auto;
+    margin-top: 50px;
+    padding: 70px 0px;
+    p {
+        text-align: center;
+        color: red;
+        font-size: 20px;
+        font-weight: 550;
+    }
+}
