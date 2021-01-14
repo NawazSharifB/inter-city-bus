@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
     let filteredBusList = [];
     let unAvailableSeatsArr = []
 
-    searchInfo.date = new Date(searchInfo.date).toLocaleString('en-au',{timeZone:'Asia/Dhaka'})
+    searchInfo.date = new Date(new Date(searchInfo.date) + 21601000)
 
     /*
     from: 'rajshahi',
@@ -46,7 +46,8 @@ module.exports = async (req, res) => {
             
             // console.log('from 62', busList.length)
             const searchDate = searchInfo.date
-            let today = new Date().toLocaleString('en-au',{timeZone:'Asia/Dhaka'})
+            // console.log(searchDate)
+            let today = new Date(Date.now() + 21600000)
             // console.log('____________________________')
             // console.log('search date')
             // console.log('what client sent', searchInfo.date)
@@ -73,15 +74,15 @@ module.exports = async (req, res) => {
                         const index = bus.busStopNames.indexOf(searchInfo.from)
 
                         // today = new Date(Date.now() + 300000)
-                        today = new Date(Date.now() + 300000).toLocaleString('en-au',{timeZone:'Asia/Dhaka'});
+                        today = new Date(new Date(today).getTime() + 300000)
                         const time = ((today.getHours() * 100) + today.getMinutes());
-                        // console.log('----------- checking time---------')
-                        // console.log('hour', today.getHours())
-                        // console.log('minute', today.getMinutes())
-                        // console.log(typeof today.getHours())
-                        // console.log('time', time)
-                        // console.log('bus stop time', bus.busStopSchedules[index])
-                        // console.log('----------- checking time---------')
+                        console.log('----------- checking time---------')
+                        console.log('hour', today.getHours())
+                        console.log('minute', today.getMinutes())
+                        console.log(typeof today.getHours())
+                        console.log('time', time)
+                        console.log('bus stop time', bus.busNumber, bus.busStopSchedules[index])
+                        console.log('----------- checking time---------')
                         return time <= bus.busStopSchedules[index]
                     })
                 } else {

@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
     const purchaseInfo = req.body
     // console.log(purchaseInfo)
     const userData = req.userData
-    purchaseInfo.date = searchInfo.date = new Date(purchaseInfo.date).toLocaleString('en-au',{timeZone:'Asia/Dhaka'})
+    purchaseInfo.date = new Date(new Date(purchaseInfo.date) + 21600000)
 
     const batch = fs.fs.batch()
     const busRef = fs.fs.collection('bus').doc(purchaseInfo.busName).collection('bus').doc(purchaseInfo.busUid)
