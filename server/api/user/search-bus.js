@@ -71,9 +71,14 @@ module.exports = async (req, res) => {
                         const index = bus.busStopNames.indexOf(searchInfo.from)
 
                         today = new Date(Date.now() + 300000)
-                        const time = today.getHours() * 100 + today.getMinutes()
+                        const time = ((today.getHours() * 100) + today.getMinutes())
+                        console.log('----------- checking time---------')
+                        console.log('hour', today.getHours())
+                        console.log('minute', today.getMinutes())
+                        console.log(typeof today.getHours())
                         console.log('time', time)
                         console.log('bus stop time', bus.busStopSchedules[index])
+                        console.log('----------- checking time---------')
                         return time <= bus.busStopSchedules[index]
                     })
                 } else {
