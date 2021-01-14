@@ -1,7 +1,6 @@
 const bcrypt = require('bcryptjs')
 const index = require('../../../index')
 const jwt = require('jsonwebtoken')
-const { register } = require('ts-node')
 //fs.fs
 
 module.exports = async (req, res) => {
