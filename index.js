@@ -41,7 +41,7 @@ app.use(compression())
 
 const port = process.env.PORT || 3000
 
-const jwtsecretKey = process.env.JWT_SECET_KEY ||
+const jwtsecretKey = process.env.JWT_SECET_KEY
 
 app.use(express.static(__dirname + '/dist/inter-city-bus'))
 
