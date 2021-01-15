@@ -4,7 +4,7 @@ const path = require('path')
 const admin = require('firebase-admin')
 
 const compression = require('compression')
-// const fsConfig = require('./server/tools/firebase-config-file.json')
+const fsConfig = require('./server/tools/firebase-config-file.json')
 
 
 //middlewares
@@ -23,8 +23,8 @@ const userRoutes = require('./server/api/user/user-routes')
 const validatorsRoute = require('./server/validators/validators.routes')
 
 admin.initializeApp({
-    // credential: admin.credential.cert(fsConfig)
-    credential: admin.credential.cert(JSON.parse(process.env.FS_CONFIG))
+    credential: admin.credential.cert(fsConfig)
+    // credential: admin.credential.cert(JSON.parse(process.env.FS_CONFIG))
 })
 const fs = admin.firestore()
 
@@ -33,7 +33,9 @@ app.use(express.json())
 // app.use(cors({
 //     origin: 'http://localhost:4200',
 // }))
-app.use(cors())
+app.use(cors({
+    origin: 'https://nsb-inter-city-bus'
+}))
 
 // helper middlewares
 app.use(compression())
@@ -41,7 +43,7 @@ app.use(compression())
 
 const port = process.env.PORT || 3000
 
-const jwtsecretKey = process.env.JWT_SECET_KEY
+const jwtsecretKey = process.env.JWT_SECET_KEY || 'InterCityBusTick'
 
 app.use(express.static(__dirname + '/dist/inter-city-bus'))
 

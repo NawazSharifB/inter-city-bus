@@ -9,6 +9,11 @@ export const environment = {
   userServerUrl: 'http://localhost:3000/server-user/',
   proprietorServerUrl: 'http://localhost:3000/server-proprietor/',
   adminServerUrl: 'http://localhost:3000/server-admin/',
+  // serverUrl: 'https://nsb-inter-city-bus/server-',
+  // validatorServerUrl: 'https://nsb-inter-city-bus/server-validator/',
+  // userServerUrl: 'https://nsb-inter-city-bus/server-user/',
+  // proprietorServerUrl: 'https://nsb-inter-city-bus/server-proprietor/',
+  // adminServerUrl: 'https://nsb-inter-city-bus/server-admin/',
 };
 
 /*

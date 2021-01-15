@@ -101,7 +101,7 @@ module.exports = async (req, res) => {
                 // console.log('fare', fare)
                 const busInfo = new BusInfo(bus.busName, bus.busNumber, bus.startPoint, bus.endPoint,
                     searchInfo.from, searchInfo.to, bus.busStopSchedules[bus.busStopNames.indexOf(searchInfo.from)], bus.busStopSchedules[bus.busStopNames.indexOf(searchInfo.to)],
-                    searchInfo.date, fare, calculateAvailableSeat(bus), unAvailableSeatsArr, bus.seatPattern, bus.busType, bus.uid)
+                    (searchInfo.date - 21601000), fare, calculateAvailableSeat(bus), unAvailableSeatsArr, bus.seatPattern, bus.busType, bus.uid)
                 // console.log(61, busInfo);
                 return busInfo;
             })

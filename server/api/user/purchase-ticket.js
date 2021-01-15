@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
     const purchaseInfo = req.body
     // console.log(purchaseInfo)
     const userData = req.userData
-    purchaseInfo.date = new Date(new Date(purchaseInfo.date) + 21600000)
+    purchaseInfo.date = new Date(purchaseInfo.date + 21600000)
 
     const batch = fs.fs.batch()
     const busRef = fs.fs.collection('bus').doc(purchaseInfo.busName).collection('bus').doc(purchaseInfo.busUid)
@@ -91,13 +91,28 @@ module.exports = async (req, res) => {
             }
 
             //managing userInfo
-
+            purchaseInfo.date = new Date(purchaseInfo.date - 21600000)
             if (userInfo.tickets.upcoming.hasOwnProperty(date)) {
                 // console.log('data for that date exists')
                 //checking if tickets for same bus, date and places already has been purchased
+                
                 const sameBus = userInfo.tickets.upcoming[date].filter(ticket => {
+                    // console.log('-------------------')
+                    // console.log('purchased ticket info')
+                    // console.log('bus uid', ticket.busUid)
+                    // console.log('date', ticket.date)
+                    // console.log('start point', ticket.startPoint)
+                    // console.log('end point', ticket.endPoint)
+                    // console.log('----------------------')
+                    // console.log('----------------------')
+                    // console.log('new ticket info')
+                    // console.log('bus uid', purchaseInfo.busUid)
+                    // console.log('date', purchaseInfo.date.toISOString())
+                    // console.log('start point', purchaseInfo.startPoint)
+                    // console.log('end point', purchaseInfo.endPoint)
+                    // console.log('-----------------')
                     if ( ticket.busUid === purchaseInfo.busUid && 
-                        ticket.date === purchaseInfo.date && 
+                        ticket.date === purchaseInfo.date.toISOString() && 
                         ticket.startPoint === purchaseInfo.startPoint &&
                         ticket.endPoint === purchaseInfo.endPoint
                         ) {
@@ -135,7 +150,7 @@ module.exports = async (req, res) => {
             // console.log('final', userInfo.tickets.upcoming)
   
             // console.log(userInfo)
-
+            purchaseInfo.date = new Date(purchaseInfo.date).toISOString()
             await Promise.all([t.update(userRef, {'tickets.upcoming': userInfo.tickets.upcoming}), t.update(busRef, {seatCounter: busInfo.seatCounter})])
             // console.log('saved data')
         })

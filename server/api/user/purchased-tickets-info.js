@@ -29,8 +29,10 @@ module.exports = async (req, res, next) => {
                 today.getMonth() === month &&
                 today.getFullYear() === year
             ) {
+                // console.log('hit today')
                 const validatedUpcomingTickets = upcomingTickets[strDate].filter(ticket => {
                     const time = today.getHours() * 100 + today.getMinutes()
+                    // console.log('server time', time)
 
                     if (time > ticket.journeyTime) {
                         backDatedTickets.push(ticket)
@@ -44,6 +46,12 @@ module.exports = async (req, res, next) => {
             }
 
             
+        }
+
+        for(let strDate in upcomingTickets) { 
+            if (!upcomingTickets[strDate].length) {
+                delete upcomingTickets[strDate]
+            }
         }
 
         await fs.collection('user').doc(userData.uid).update({tickets: {upcoming: upcomingTickets, backDated: backDatedTickets}})
