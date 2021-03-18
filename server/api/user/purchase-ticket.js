@@ -16,6 +16,7 @@ module.exports = async (req, res) => {
     // console.log(purchaseInfo)
     const userData = req.userData
     purchaseInfo.date = new Date(purchaseInfo.date + 21600000)
+    // purchaseInfo.date = new Date(purchaseInfo.date)
 
     const batch = fs.fs.batch()
     const busRef = fs.fs.collection('bus').doc(purchaseInfo.busName).collection('bus').doc(purchaseInfo.busUid)
@@ -92,6 +93,7 @@ module.exports = async (req, res) => {
 
             //managing userInfo
             purchaseInfo.date = new Date(purchaseInfo.date - 21600000)
+            // purchaseInfo.date = new Date(purchaseInfo.date)
             if (userInfo.tickets.upcoming.hasOwnProperty(date)) {
                 // console.log('data for that date exists')
                 //checking if tickets for same bus, date and places already has been purchased

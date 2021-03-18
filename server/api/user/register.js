@@ -23,7 +23,8 @@ module.exports = async (req, res) => {
             email: registerInfo.email,
             uid: registerInfo.uid,
             role: registerInfo.role
-        }}, index.jwtsecretKey, {expiresIn: '72h'})
+        // }}, index.jwtsecretKey, {expiresIn: '72h'})
+        }}, index.jwtsecretKey)
 
         res.status(200).json(token)
 

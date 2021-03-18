@@ -11,11 +11,11 @@ import { ProprietorComponent } from './components/proprietor/proprietor.componen
 const Router = [
     {path: '', component: ProprietorComponent,
     children: [
-        {path: ':busName/panel', component: ProprietorPanelComponent},
-        {path: ':busName/add-bus', component: AddEditBusComponent},
-        {path: ':busName/edit-bus/:id', component: AddEditBusComponent},
-        {path: ':busName/new-moderator', component: CreateNewModeratorComponent},
-        {path: ':busName/all-bus-list', component: ProprietorAllBusListComponent},
+      {path: ':busName/add-bus', component: AddEditBusComponent},
+      {path: ':busName/edit-bus/:id', component: AddEditBusComponent},
+      {path: ':busName/new-moderator', component: CreateNewModeratorComponent},
+      {path: ':busName/all-bus-list', component: ProprietorAllBusListComponent},
+      {path: ':busName/panel', component: ProprietorPanelComponent},
     ]
   },
 ];

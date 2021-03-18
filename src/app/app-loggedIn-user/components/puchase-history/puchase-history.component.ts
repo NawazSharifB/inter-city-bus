@@ -50,7 +50,7 @@ export class PuchaseHistoryComponent implements OnInit {
     this.notificationService.pageBlocker.next(true);
     this.userService.purchasedTicketHistory().subscribe( (data: PurchaseHistoryData) => {
       this.notificationService.pageBlocker.next(false);
-      console.log(data)
+      // console.log(data);
       this.sortTickets(data);
     }, error => {
       this.notificationService.pageBlocker.next(false);
@@ -60,13 +60,13 @@ export class PuchaseHistoryComponent implements OnInit {
   }
 
   sortTickets(tickets: PurchaseHistoryData): void {
-    if (tickets.upcoming[0].date['_seconds']) {
-      this.upcoming = tickets.upcoming.sort((a, b) => a.date['_seconds'] - b.date['_seconds']);
-      this.backDated = tickets.backDated.sort((a, b) => b.date['_seconds'] - a.date['_seconds']);
-    } else {
+    // if (tickets.upcoming.length) {
+    //   this.upcoming = tickets.upcoming.sort((a, b) => a.date['_seconds'] - b.date['_seconds']);
+    //   this.backDated = tickets.backDated.sort((a, b) => b.date['_seconds'] - a.date['_seconds']);
+    // } else {
       this.upcoming = tickets.upcoming.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
       this.backDated = tickets.backDated.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-    }
+    // }
   }
 
 

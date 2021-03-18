@@ -62,7 +62,7 @@
                     <mat-label>Password</mat-label>
                     <input matInput formControlName="password" [type]="hidePasswordField ? 'password' : 'text'">
                     <button type="button" mat-icon-button matSuffix (click)="hidePasswordField = !hidePasswordField" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePasswordField">
-                        <mat-icon>{{hidePasswordField ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        <mat-icon>{{hidePasswordField ? 'visibility': 'visibility_off'}}</mat-icon>
                     </button>
 
                     <!-- <mat-error *ngIf="registerForm.errors?.unMatchPassword">{{registerForm.errors.unMatchPassword}}</mat-error> -->
@@ -76,7 +76,7 @@
                     <mat-label>Re-Password</mat-label>
                     <input matInput formControlName="rePassword" [type]="hidePasswordField ? 'password' : 'text'" [pattern]="password.value">
                     <button type="button" mat-icon-button matSuffix (click)="hidePasswordField = !hidePasswordField" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePasswordField">
-                        <mat-icon>{{hidePasswordField ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        <mat-icon>{{hidePasswordField ? 'visibility': 'visibility_off'}}</mat-icon>
                     </button>
 
                     <!-- <mat-error *ngIf="registerForm.errors?.unMatchPassword">{{registerForm.errors.unMatchPassword}}</mat-error> -->

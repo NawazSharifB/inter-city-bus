@@ -42,7 +42,11 @@ export class NavComponent implements OnInit{
           this.admin = data[2];
 
           if (this.proprietor) {
-            this.busName = this.authService.userProprietoryBusName().split(' ').join('_');
+            const getBusName = this.authService.userProprietoryBusName();
+            if (!getBusName) {
+              return;
+            }
+            this.busName = getBusName.split(' ').join('_');
           } else {
             this.busName = null;
           }

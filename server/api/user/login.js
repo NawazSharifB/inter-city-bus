@@ -60,7 +60,8 @@ module.exports = async (req, res) => {
                     email: users.admin[0].email,
                     uid: users.admin[0].uid,
                     role: users.admin[0].role
-                }}, index.jwtsecretKey, {expiresIn: '72h'})
+                // }}, index.jwtsecretKey, {expiresIn: '72h'})
+                }}, index.jwtsecretKey)
 
                 res.status(200).json(token)
             } else {
@@ -79,7 +80,8 @@ module.exports = async (req, res) => {
                     uid: users.proprietor[0].uid,
                     role: users.proprietor[0].role,
                     busName: users.proprietor[0].busName
-                }}, index.jwtsecretKey, {expiresIn: '72h'})
+                // }}, index.jwtsecretKey, {expiresIn: '72h'})
+                }}, index.jwtsecretKey)
 
                 res.status(200).json(token)
             } else {
@@ -98,7 +100,8 @@ module.exports = async (req, res) => {
                     uid: users.moderator[0].uid,
                     role: users.moderator[0].role,
                     busName: users.moderator[0].busName
-                }}, index.jwtsecretKey, {expiresIn: '72h'})
+                // }}, index.jwtsecretKey, {expiresIn: '72h'})
+                }}, index.jwtsecretKey)
 
                 res.status(200).json(token)
             } else {
@@ -116,7 +119,8 @@ module.exports = async (req, res) => {
                     email: users.user[0].email,
                     uid: users.user[0].uid,
                     role: users.user[0].role,
-                }}, index.jwtsecretKey, {expiresIn: '72h'})
+                // }}, index.jwtsecretKey, {expiresIn: '72h'})
+                }}, index.jwtsecretKey)
                 res.status(200).json(token)
             } else {
                 res.status(401).json({message: 'Unauthorized password'})
@@ -127,31 +131,6 @@ module.exports = async (req, res) => {
             res.status(401).json({message: 'Unauthorized Email/Phone'})
         }
 
-
-        // // await index.fs.collection('user').where('email', '==', loginInfo.email).get()
-        // // .then(items => {
-        // //     items.forEach(item => {
-        // //         users.push(item.data())
-        // //     })
-        // // })
-
-        // if(users.length) {
-        //     const passwordValidity = bcrypt.compare(loginInfo.password, users[0].password)
-
-        //     if(passwordValidity) {
-        //         const token = jwt.sign({data: {
-        //             name: users[0].firstName,
-        //             email: users[0].email,
-        //             uid: users[0].uid,
-        //             role: users[0].role
-        //         }}, index.jwtsecretKey, {expiresIn: '72h'})
-        //         res.status(200).json(token)
-        //     } else {
-        //         res.status(401).json({message: 'Unauthorized password'})
-        //     }
-        // } else {
-        //     res.status(401).json({message: 'Unauthorized email'})
-        // }
     } catch(error) {
         // console.log(error)
         res.status(500).json({message: 'Server Error'})

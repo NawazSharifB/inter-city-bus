@@ -7,6 +7,7 @@ module.exports = async (req, res) => {
     let unAvailableSeatsArr = []
 
     searchInfo.date = new Date(searchInfo.date + 21601000)
+    // searchInfo.date = new Date(searchInfo.date)
 
     /*
     from: 'rajshahi',
@@ -48,6 +49,7 @@ module.exports = async (req, res) => {
             const searchDate = searchInfo.date
             // console.log(searchDate)
             let today = new Date(Date.now() + 21600000)
+            // let today = new Date(Date.now())
             console.log('____________________________')
             console.log('search date')
             console.log('what client sent', searchInfo.date)
@@ -73,8 +75,8 @@ module.exports = async (req, res) => {
                     busList = busList.filter( bus => {
                         const index = bus.busStopNames.indexOf(searchInfo.from)
 
-                        // today = new Date(Date.now() + 300000)
                         today = new Date(Date.now() + 21600000 + 300000)
+                        // today = new Date(Date.now() + 300000)
                         const time = ((today.getHours() * 100) + today.getMinutes());
                         console.log('----------- checking time---------')
                         console.log('hour', today.getHours())
@@ -102,6 +104,7 @@ module.exports = async (req, res) => {
                 const busInfo = new BusInfo(bus.busName, bus.busNumber, bus.startPoint, bus.endPoint,
                     searchInfo.from, searchInfo.to, bus.busStopSchedules[bus.busStopNames.indexOf(searchInfo.from)], bus.busStopSchedules[bus.busStopNames.indexOf(searchInfo.to)],
                     (searchInfo.date - 21601000), fare, calculateAvailableSeat(bus), unAvailableSeatsArr, bus.seatPattern, bus.busType, bus.uid)
+                    // (searchInfo.date), fare, calculateAvailableSeat(bus), unAvailableSeatsArr, bus.seatPattern, bus.busType, bus.uid)
                 // console.log(61, busInfo);
                 return busInfo;
             })

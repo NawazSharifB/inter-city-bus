@@ -18,9 +18,10 @@ export class BusProprietorGuard implements CanActivate, CanActivateChild {
     return this.authService.isUserProprietor();
   }
 
-  canActivateChild(next: ActivatedRouteSnapshot,
+  canActivateChild(
+    next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      return this.canActivate(next, state)
+      return this.canActivate(next, state);
     }
-  
+
 }

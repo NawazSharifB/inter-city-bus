@@ -47,9 +47,6 @@ const jwtsecretKey = process.env.JWT_SECET_KEY
 
 app.use(express.static(__dirname + '/dist/inter-city-bus'))
 
-// app.get('/', (req, res) => {
-//     res.send('server is working')
-// })
 
 // process.env.TZ = 'gmt+10'
 
