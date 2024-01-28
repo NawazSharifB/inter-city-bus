@@ -11,7 +11,7 @@
 /node_modules
 
 #fs config file
-/server/tools/firebase-config-file.json
+# /server/tools/firebase-config-file.json
 
 # environment keys
 /keys.txt
