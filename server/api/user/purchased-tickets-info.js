@@ -48,7 +48,7 @@ module.exports = async (req, res, next) => {
                 upcomingTickets[strDate] = validatedUpcomingTickets
 
             } else if (todaysDate > ticketDate) {
-                console.log('hit back date')
+                // console.log('hit back date')
                 upcomingTickets[strDate].forEach(ticket => backDatedTickets.push(ticket))
                 upcomingTickets[strDate] = []
             }
@@ -78,7 +78,7 @@ module.exports = async (req, res, next) => {
         }
 
     } catch(error) {
-        console.log(error)
+        // console.log(error)
         res.status(500).json({message: 'Server Error'})
     }
 }

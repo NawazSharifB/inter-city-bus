@@ -31,7 +31,7 @@ module.exports = async (req, res, next) => {
             return res.status(403).json({message: 'Forbidden Request'})
         }
     } catch(error) {
-        console.log(error)
+        // console.log(error)
         res.status(500).json({message: 'Server Error'})
     }
 }

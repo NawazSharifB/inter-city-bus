@@ -50,45 +50,45 @@ module.exports = async (req, res) => {
             // console.log(searchDate)
             let today = new Date(Date.now() + 21600000)
             // let today = new Date(Date.now())
-            console.log('____________________________')
-            console.log('search date')
-            console.log('what client sent', searchInfo.date)
-            console.log('date', searchDate.getDate())
-            console.log('full year', searchDate.getFullYear())
-            console.log('month', searchDate.getMonth())
-            console.log('day', searchDate.getDay())
-            console.log('utc', searchDate.getUTCDate())
-            console.log('-----------------------------')
-            console.log('____________________________')
-            console.log('today date')
-            console.log('today time', today.getTime())
-            console.log('date', today.getDate())
-            console.log('full year', today.getFullYear())
-            console.log('month', today.getMonth())
-            console.log('day', today.getDay())
-            console.log('utc', today.getUTCDay())
-            console.log('------------------------------')
+            // console.log('____________________________')
+            // console.log('search date')
+            // console.log('what client sent', searchInfo.date)
+            // console.log('date', searchDate.getDate())
+            // console.log('full year', searchDate.getFullYear())
+            // console.log('month', searchDate.getMonth())
+            // console.log('day', searchDate.getDay())
+            // console.log('utc', searchDate.getUTCDate())
+            // console.log('-----------------------------')
+            // console.log('____________________________')
+            // console.log('today date')
+            // console.log('today time', today.getTime())
+            // console.log('date', today.getDate())
+            // console.log('full year', today.getFullYear())
+            // console.log('month', today.getMonth())
+            // console.log('day', today.getDay())
+            // console.log('utc', today.getUTCDay())
+            // console.log('------------------------------')
             if (searchDate.getDate() === today.getDate() && 
                 searchDate.getFullYear() === today.getFullYear() &&
                 searchDate.getMonth() === today.getMonth()) {
-                    console.log('hit todays bus')
+                    // console.log('hit todays bus')
                     busList = busList.filter( bus => {
                         const index = bus.busStopNames.indexOf(searchInfo.from)
 
                         today = new Date(Date.now() + 21600000 + 300000)
                         // today = new Date(Date.now() + 300000)
                         const time = ((today.getHours() * 100) + today.getMinutes());
-                        console.log('----------- checking time---------')
-                        console.log('hour', today.getHours())
-                        console.log('minute', today.getMinutes())
-                        console.log(typeof today.getHours())
-                        console.log('time', time)
-                        console.log('bus stop time', bus.busNumber, bus.busStopSchedules[index])
-                        console.log('----------- checking time---------')
+                        // console.log('----------- checking time---------')
+                        // console.log('hour', today.getHours())
+                        // console.log('minute', today.getMinutes())
+                        // console.log(typeof today.getHours())
+                        // console.log('time', time)
+                        // console.log('bus stop time', bus.busNumber, bus.busStopSchedules[index])
+                        // console.log('----------- checking time---------')
                         return time <= bus.busStopSchedules[index]
                     })
                 } else {
-                    console.log('not today bus')
+                    // console.log('not today bus')
                 }
     
             if ( !busList || !(busList.length >= 0)) {
@@ -217,7 +217,7 @@ module.exports = async (req, res) => {
         }
 
     } catch(error) {
-        console.log(error)
+        // console.log(error)
     }
 
     // console.log(searchInfo)
