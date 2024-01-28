@@ -4,7 +4,8 @@ const path = require('path')
 const admin = require('firebase-admin')
 
 const compression = require('compression')
-// const fsConfig = require('./server/tools/firebase-config-file.json')
+const fsConfig = require('./server/tools/firebase-config-file.json');
+const jwtSecret = require('./server/tools/jwt-secret-key.js');
 
 
 //middlewares
@@ -23,8 +24,8 @@ const userRoutes = require('./server/api/user/user-routes')
 const validatorsRoute = require('./server/validators/validators.routes')
 
 admin.initializeApp({
-    // credential: admin.credential.cert(fsConfig)
-    credential: admin.credential.cert(JSON.parse(process.env.FS_CONFIG))
+    credential: admin.credential.cert(fsConfig)
+    // credential: admin.credential.cert(JSON.parse(process.env.FS_CONFIG))
 })
 const fs = admin.firestore()
 
@@ -43,7 +44,8 @@ app.use(compression())
 
 const port = process.env.PORT || 3000
 
-const jwtsecretKey = process.env.JWT_SECET_KEY
+const jwtsecretKey = jwtSecret;
+// const jwtsecretKey = process.env.JWT_SECET_KEY
 
 app.use(express.static(__dirname + '/dist/inter-city-bus'))
 
